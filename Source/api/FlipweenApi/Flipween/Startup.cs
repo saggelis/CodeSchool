@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Flipween.Startup))]
+[assembly: OwinStartup(typeof(FlipWeen.Startup))]
 
-namespace Flipween
+namespace FlipWeen
 {
     public partial class Startup
     {

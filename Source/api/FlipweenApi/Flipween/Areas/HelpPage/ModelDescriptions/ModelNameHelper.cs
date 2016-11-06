@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Flipween.Areas.HelpPage.ModelDescriptions
+namespace FlipWeen.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace Flipween.Areas.HelpPage.ModelDescriptions
+namespace FlipWeen.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipweenApi", "Flipween\FlipweenApi.csproj", "{903A6218-CE2E-4AC2-8DCE-7E49634A0F69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipWeenApi", "Flipween\FlipWeenApi.csproj", "{903A6218-CE2E-4AC2-8DCE-7E49634A0F69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipWeen.Common", "FlipWeen.Common\FlipWeen.Common.csproj", "{1E469539-0D11-49F8-AF65-FB0CFCED7D0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipWeen.Data", "FlipWeen.Data\FlipWeen.Data.csproj", "{64F8052D-876E-40CD-BDA9-8DEA40567C0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{903A6218-CE2E-4AC2-8DCE-7E49634A0F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{903A6218-CE2E-4AC2-8DCE-7E49634A0F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{903A6218-CE2E-4AC2-8DCE-7E49634A0F69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E469539-0D11-49F8-AF65-FB0CFCED7D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E469539-0D11-49F8-AF65-FB0CFCED7D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E469539-0D11-49F8-AF65-FB0CFCED7D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E469539-0D11-49F8-AF65-FB0CFCED7D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64F8052D-876E-40CD-BDA9-8DEA40567C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F8052D-876E-40CD-BDA9-8DEA40567C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F8052D-876E-40CD-BDA9-8DEA40567C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F8052D-876E-40CD-BDA9-8DEA40567C0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

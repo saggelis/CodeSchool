@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Flipween.Models
+namespace FlipWeen.Common.ViewModels
 {
     // Models returned by AccountController actions.
 

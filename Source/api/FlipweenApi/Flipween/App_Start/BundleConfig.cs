@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Flipween
+namespace FlipWeen
 {
     public class BundleConfig
     {

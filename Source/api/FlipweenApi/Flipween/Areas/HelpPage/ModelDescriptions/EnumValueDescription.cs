@@ -1,4 +1,4 @@
-namespace Flipween.Areas.HelpPage.ModelDescriptions
+namespace FlipWeen.Areas.HelpPage.ModelDescriptions
 {
     public class EnumValueDescription
     {

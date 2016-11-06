@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace Flipween.Areas.HelpPage
+namespace FlipWeen.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

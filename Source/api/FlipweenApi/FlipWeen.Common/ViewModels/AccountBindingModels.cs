@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
 
-namespace Flipween.Models
+namespace FlipWeen.Common.ViewModels
 {
     // Models used as parameters to AccountController actions.
 

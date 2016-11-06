@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace Flipween.Areas.HelpPage
+namespace FlipWeen.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

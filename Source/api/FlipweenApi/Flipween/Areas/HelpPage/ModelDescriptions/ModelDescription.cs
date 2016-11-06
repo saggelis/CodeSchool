@@ -1,6 +1,6 @@
 using System;
 
-namespace Flipween.Areas.HelpPage.ModelDescriptions
+namespace FlipWeen.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

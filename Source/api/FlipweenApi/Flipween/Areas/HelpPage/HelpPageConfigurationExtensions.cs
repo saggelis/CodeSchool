@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using Flipween.Areas.HelpPage.ModelDescriptions;
-using Flipween.Areas.HelpPage.Models;
+using FlipWeen.Areas.HelpPage.ModelDescriptions;
+using FlipWeen.Areas.HelpPage.Models;
 
-namespace Flipween.Areas.HelpPage
+namespace FlipWeen.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

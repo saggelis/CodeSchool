@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Flipween.Areas.HelpPage.ModelDescriptions
+namespace FlipWeen.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

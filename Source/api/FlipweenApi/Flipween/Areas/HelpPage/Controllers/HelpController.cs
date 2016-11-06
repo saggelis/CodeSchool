@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Flipween.Areas.HelpPage.ModelDescriptions;
-using Flipween.Areas.HelpPage.Models;
+using FlipWeen.Areas.HelpPage.ModelDescriptions;
+using FlipWeen.Areas.HelpPage.Models;
 
-namespace Flipween.Areas.HelpPage.Controllers
+namespace FlipWeen.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.
