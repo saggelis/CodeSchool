@@ -1,0 +1,178 @@
+html *:last-child {
+    margin-bottom: 0;
+}
+
+html *:first-child {
+    margin-top: 0;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Segoe UI;
+    
+}
+
+a:link {
+    text-decoration: none;
+    margin: 0;
+}
+
+a:visited {
+    text-decoration: none;
+    padding: 0;
+}
+
+
+/* header_photo sto kentro */
+
+#header1 {
+    position: relative;
+    width: 100%;
+    height: 60px;
+   
+}
+
+/* PANO MPARA */
+
+/* nav */
+
+#nav {
+    position: absolute;
+    width: 100%;
+    height: 50px; 
+}
+
+/* logo */
+
+#logo {
+    margin-top: 12px;
+    margin-left: 150px;
+    margin-bottom: 5px;
+
+}
+
+
+/* sign-up_link */
+
+#sign-up_link {
+    color: #1A1736;
+    float: right;
+    margin: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+#sign-up_link:visited {
+    color: #1A1736;     
+}
+
+
+/* log-in_link */
+
+#log-in_link {
+    color: #1A1736;
+    float: right;
+    margin: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;   
+}
+
+#log-in_link:visited {
+    color: #1A1736;
+     
+}
+
+/* start-a-project_link */
+
+#start-a-project_link {
+    color: white;
+    float: right;
+    margin: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    padding: 7px 15px 7px 15px;
+    background-color: #5236A8;    
+}
+
+#start-a-project_link:visited {
+    color: #6A4CC9;
+}
+
+#start-a-project_link:hover {
+    background-color: #6A4CC9;
+}
+
+/* how-it works_link */
+
+#how-it-works_link {
+    color: #1A1736;
+    float: right;
+    margin: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;    
+}
+
+#how-it-works_link:visited {
+    color: #1A1736;      
+}
+
+/* explore_link */
+
+#explore_link {
+    color: #1A1736;
+    float: right;
+    margin: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    
+}
+
+#explore_link:visited {
+    color: #1A1736;     
+}
+
+#header2 {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 200px;
+    
+   
+}
+
+/* banner_text_div */
+
+#banner_text_div {
+    position: absolute;
+    width: 800px;
+    height: 180px;
+    top:0%;    
+    left:50%;
+    margin-left: -500px;
+    padding: 70px;
+}
+
+#banner_text {
+    color: white;
+    font-weight: regular;
+    font-size: 60px;
+    text-align: center;
+  
+}
+
+#banner_under_text {
+    color: #1A1736;
+    font-size: 39px;
+    font-weight: regular;
+    text-align: center;
+    margin-top: -60px;   
+}
