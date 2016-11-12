@@ -1,0 +1,18 @@
+CREATE TABLE Backers_project (ProjectProjectID int NOT NULL, UsersUserID int NOT NULL, BackingAmount int NULL, PRIMARY KEY (ProjectProjectID, UsersUserID));
+CREATE TABLE Categories (CategoryID int IDENTITY NOT NULL, CategoryName nvarchar(100) NOT NULL UNIQUE, CategoryImage image NOT NULL, PRIMARY KEY (CategoryID));
+CREATE TABLE Packages (PackageID int IDENTITY NOT NULL, PackageAmount int NOT NULL, PRIMARY KEY (PackageID));
+CREATE TABLE Project (ProjectID int IDENTITY NOT NULL, [Project Name] nvarchar(25) NOT NULL UNIQUE, [Project Description] nvarchar(4000) NULL, [Creation Date] datetime NOT NULL, TargetAmount int NOT NULL, UserID int NOT NULL, CategoryID int NOT NULL, ProjectImage image NULL, Video nvarchar(500) NULL, PRIMARY KEY (ProjectID));
+CREATE TABLE ProjectPacakges (ProjectProjectID int NOT NULL, PackagesPackageID int NOT NULL, PRIMARY KEY (ProjectProjectID, PackagesPackageID));
+CREATE TABLE Rewards (RewardsID int IDENTITY NOT NULL, PackageDecreption nvarchar(2000) NULL, PackageID int NULL, PRIMARY KEY (RewardsID));
+CREATE TABLE [Transaction] (TransactionID int IDENTITY NOT NULL, TransactionAmount int NOT NULL, ProjectID int NOT NULL, UserID int NOT NULL, PackageID int NULL, PRIMARY KEY (TransactionID));
+CREATE TABLE Users (UserID int IDENTITY NOT NULL, [First Name] nvarchar(100) NOT NULL, [Last Name] nvarchar(100) NOT NULL, Email nvarchar(100) NOT NULL UNIQUE, Password nvarchar(100) NOT NULL, PRIMARY KEY (UserID));
+ALTER TABLE ProjectPacakges ADD CONSTRAINT FKProjectPac233886 FOREIGN KEY (ProjectProjectID) REFERENCES Project (ProjectID);
+ALTER TABLE ProjectPacakges ADD CONSTRAINT FKProjectPac104125 FOREIGN KEY (PackagesPackageID) REFERENCES Packages (PackageID);
+ALTER TABLE Backers_project ADD CONSTRAINT FKBackers_pr949659 FOREIGN KEY (ProjectProjectID) REFERENCES Project (ProjectID);
+ALTER TABLE Backers_project ADD CONSTRAINT FKBackers_pr913973 FOREIGN KEY (UsersUserID) REFERENCES Users (UserID);
+ALTER TABLE Project ADD CONSTRAINT FKProject961061 FOREIGN KEY (UserID) REFERENCES Users (UserID);
+ALTER TABLE Rewards ADD CONSTRAINT FKRewards30729 FOREIGN KEY (PackageID) REFERENCES Packages (PackageID);
+ALTER TABLE [Transaction] ADD CONSTRAINT FKTransactio206744 FOREIGN KEY (ProjectID) REFERENCES Project (ProjectID);
+ALTER TABLE [Transaction] ADD CONSTRAINT FKTransactio813620 FOREIGN KEY (UserID) REFERENCES Users (UserID);
+ALTER TABLE [Transaction] ADD CONSTRAINT FKTransactio218427 FOREIGN KEY (PackageID) REFERENCES Packages (PackageID);
+ALTER TABLE Project ADD CONSTRAINT FKProject587540 FOREIGN KEY (CategoryID) REFERENCES Categories (CategoryID);
