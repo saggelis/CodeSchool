@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -120,6 +122,7 @@ namespace FlipWeen.MVC.Controllers
             var response = await _loginClient.Login(email, password);
             if (response.StatusIsSuccessful)
             {
+             
                 _tokenContainer.ApiToken = response.Data;
             }
 

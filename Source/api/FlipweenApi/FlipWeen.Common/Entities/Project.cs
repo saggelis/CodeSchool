@@ -29,7 +29,19 @@ namespace FlipWeen.Common.Entities
         public virtual int UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public virtual ApplicationUser Application { get; set; }
-     
+        public virtual ApplicationUser User { get; set; }
+
+        [Required]
+        public virtual int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public virtual ProjectCategory Category { get; set; }
+        
+        [MaxLength(500)]
+        public virtual string Image { get; set; }
+
+        [MaxLength(500)]
+        public virtual string Video { get; set; }
+
     }
 }

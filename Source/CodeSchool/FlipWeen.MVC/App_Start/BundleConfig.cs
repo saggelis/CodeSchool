@@ -24,6 +24,7 @@ namespace FlipWeen.MVC
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/flipween.css",
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }

@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\IDataRepository.cs" />
+    <Compile Include="Entities\ProjectCategory.cs" />
     <Compile Include="Identity.cs" />
     <Compile Include="Entities\IEntityBase.cs" />
     <Compile Include="Entities\Project.cs" />
