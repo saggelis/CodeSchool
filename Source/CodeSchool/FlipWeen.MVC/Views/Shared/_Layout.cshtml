@@ -13,25 +13,31 @@
     <div class="navbar navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("F", "Index", "Home", new { area = "" }, new { @class = "headerLogo" })
+               @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "headerLogo" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-                    <li>@Html.ActionLink("How it works", "HowItWorks", "Home", new {area = ""}, new {@class = "how-it-works_link"})</li>
-                    <li>@Html.ActionLink("Start a Project", "HowItWorks", "Home", new { area = "" }, new { @class = "start-a-project_link" })</li>
-                    <li>@Html.ActionLink("Sign up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "sign-up_link" })</li>
-                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "log-in_link" })</li>
-                   
-                </ul>
-                @Html.Partial("_LoginPartial")
+                <div class="navbar-right">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                            <li>@Html.ActionLink("How it works", "HowItWorks", "Home", new { area = "" }, new { @class = "how-it-works_link" })</li>
+                            <li>@Html.ActionLink("Start a Project", "HowItWorks", "Home", new { area = "" }, new { @class = "start-a-project_link" })</li>
+                            <li>@Html.ActionLink("Sign up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "sign-up_link" })</li>
+                            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "log-in_link" })</li>
+
+                        </ul>
+
+                    </div>
+                </div>
             </div>
-        </div>
     </div>
     <div class="container body-content">
         @RenderBody()

@@ -165,21 +165,101 @@ a:visited {
     top:0%;    
     left:50%;
     margin-left: -500px;
-    padding: 70px;
+    padding: 90px;
 }
 
 #banner_text {
     color: white;
-    font-weight: regular;
-    font-size: 60px;
+    font-weight: regular ;
+    font-size: 50px;
     text-align: center;
   
 }
 
 #banner_under_text {
     color: #1A1736;
-    font-size: 39px;
+    font-size: 35px;
     font-weight: regular;
     text-align: center;
-    margin-top: -60px;   
+    margin-top: -20px;   
+}
+
+/* Bordered form */
+form {
+    border: 0px solid #f1f1f1;
+    font-family: Segoe UI;
+    background-image: url('photos-flipween/flipween-log-in.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+     
+}
+
+h6 {
+    margin-left: 40%;
+}
+
+h3{
+    margin-left: 40%;
+    color: #1A1635;
+}
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 20%;
+    padding: 10px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-left: 40%;
+  
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #6556A4;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    border-radius: 5px;
+    margin-left: 40%;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+    margin-left: 40%;
+}
+
+
+
+/* Add padding to containers */
+.container {
+    padding: 20px;
+   
+    
+   
+}
+
+/* The "Forgot password" text */
+span.psw {
+    float: left;
+    padding-top: 10px;
+    margin-left: 40%;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+   /* .cancelbtn {
+        width: 50%;
+    } */
 }
