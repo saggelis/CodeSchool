@@ -11,7 +11,7 @@ namespace FlipWeen.MVC.Client
 
     public class LoginClient : ClientBase, ILoginClient
     {
-        private const string RegisterUri = "api/register";
+        private const string RegisterUri = "api/account/register";
         private const string TokenUri = "token";
 
         public LoginClient(IApiClient apiClient) : base(apiClient)
@@ -47,7 +47,8 @@ namespace FlipWeen.MVC.Client
             {
                 ConfirmPassword = viewModel.ConfirmPassword,
                 Email = viewModel.Email,
-                Password = viewModel.Password
+                Password = viewModel.Password,
+                FullName = viewModel.FullName
             };
             var response = await ApiClient.PostJsonEncodedContent(RegisterUri, apiModel);
             var registerResponse = await CreateJsonResponse<RegisterResponse>(response);
