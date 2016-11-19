@@ -8,25 +8,16 @@ using System.Threading.Tasks;
 
 namespace FlipWeen.Common.Entities
 {
-    public class Project : EntityBase, IEntityBase
+    public class Transaction : EntityBase, IEntityBase
     {
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id { get; set; }
-
-        [Required, MaxLength(100)]
-        public virtual string Name { get; set; }
-
-        [MaxLength(4000)]
-        public virtual string Description { get; set; }
-
+         
         [Required]
         public virtual DateTime CreationDate { get; set; }
 
         [Required]
-        public virtual DateTime EndDate { get; set; }
-
-        [Required]
-        public virtual double TargetAmount { get; set; }
+        public virtual double Amount { get; set; }
 
         [Required]
         public virtual int UserId { get; set; }
@@ -35,16 +26,15 @@ namespace FlipWeen.Common.Entities
         public virtual ApplicationUser User { get; set; }
 
         [Required]
-        public virtual int CategoryId { get; set; }
+        public virtual int ProjectId { get; set; }
 
-        [ForeignKey("CategoryId")]
-        public virtual ProjectCategory Category { get; set; }
+        [ForeignKey("ProjectId")]
+        public virtual Project Project { get; set; }
         
-        [MaxLength(500)]
-        public virtual string Image { get; set; }
+        public virtual int? PackageId { get; set; }
 
-        [MaxLength(500)]
-        public virtual string Video { get; set; }
-
+        [ForeignKey("PackageId")]
+        public virtual Package Package { get; set; }
+        
     }
 }

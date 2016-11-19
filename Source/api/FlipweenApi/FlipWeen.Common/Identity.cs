@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -32,6 +33,9 @@ namespace FlipWeen.Common
     public class ApplicationUser : IdentityUser<int, UserLogin, UserRole, UserClaim>
     {
         public DateTime? ActiveUntil;
+
+        [Required, MaxLength(200)]
+        public virtual string FullName { get; set; }
     }
 
   

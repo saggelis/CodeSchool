@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using FlipWeen.Common;
+using FlipWeen.Common.Data;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -29,15 +30,12 @@ namespace FlipWeen.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-
-        public AccountController()
-        {
-        }
-
+        
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IDataRepository repo)
         {
             UserManager = userManager;
+            IDataRepository _repo = repo;
             AccessTokenFormat = accessTokenFormat;
         }
 
@@ -45,13 +43,24 @@ namespace FlipWeen.Controllers
         {
             get
             {
-                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager;
             }
             private set
             {
                 _userManager = value;
             }
         }
+        //public ApplicationUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        _userManager = value;
+        //    }
+        //}
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
@@ -332,7 +341,7 @@ namespace FlipWeen.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email , FullName = model.FullName};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

@@ -25,13 +25,13 @@ namespace FlipWeen.Data
         /// <summary>
         /// The context object for the database
         /// </summary>
-        private DataContext _context;
+        private IDbContext _context;
     
         /// <summary>
         /// Initializes a new instance of the GenericRepository class
         /// </summary>
         /// <param name="context">The Entity Framework ObjectContext</param>
-        public DataRepository(DataContext context)
+        public DataRepository(IDbContext context)
         {
             _context = context;
            

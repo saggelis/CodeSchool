@@ -89,6 +89,7 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="DataRepository.cs" />
     <Compile Include="IdentityConfig.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

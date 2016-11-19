@@ -14,10 +14,10 @@ namespace FlipWeen
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        private WindsorContainer _windsorContainer;
+        //private WindsorContainer _windsorContainer;
         protected void Application_Start()
         {
-            InitializeWindsor();
+            //InitializeWindsor();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -27,21 +27,21 @@ namespace FlipWeen
 
         protected void Application_End()
         {
-            if (_windsorContainer != null)
-            {
-                _windsorContainer.Dispose();
-            }
+            //if (_windsorContainer != null)
+            //{
+            //    _windsorContainer.Dispose();
+            //}
         }
 
-        private void InitializeWindsor()
-        {
-            _windsorContainer = new WindsorContainer();
-            _windsorContainer.Install(FromAssembly.This());
-            var dir = AppDomain.CurrentDomain.BaseDirectory;
-            _windsorContainer.Register(
-                Types.FromAssemblyInDirectory(new AssemblyFilter(dir, "FlipWeen*"))
-                );
+        //private void InitializeWindsor()
+        //{
+        //    _windsorContainer = new WindsorContainer();
+        //    _windsorContainer.Install(FromAssembly.This());
+        //    var dir = AppDomain.CurrentDomain.BaseDirectory;
+        //    _windsorContainer.Register(
+        //        Types.FromAssemblyInDirectory(new AssemblyFilter(dir, "FlipWeen*"))
+        //        );
 
-        }
+        //}
     }
 }

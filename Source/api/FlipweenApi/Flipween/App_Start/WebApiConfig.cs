@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using Flipween.Core.IoC;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 
@@ -17,6 +18,7 @@ namespace FlipWeen
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
+            config.DependencyResolver = CastleHelper.GetDependencyResolver();
             // Web API routes
             config.MapHttpAttributeRoutes();
 
