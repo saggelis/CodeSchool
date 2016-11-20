@@ -9,6 +9,7 @@ using System.Web.Routing;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
+using Flipween.Core.Mappings;
 
 namespace FlipWeen
 {
@@ -23,6 +24,7 @@ namespace FlipWeen
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfiguration.Configure();
         }
 
         protected void Application_End()

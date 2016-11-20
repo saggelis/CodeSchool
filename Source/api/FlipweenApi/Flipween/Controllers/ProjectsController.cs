@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using Flipween.Controllers;
+using FlipWeen.Common.Data;
+using FlipWeen.Common.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,12 +12,21 @@ using System.Web.Http;
 namespace FlipWeen.Controllers
 {
     [Authorize]
-    public class ValuesController : ApiController
+    public class ProjectsController : BaseController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        IDataRepository _repository;
+        public ProjectsController(IDataRepository repository)
         {
-            return new string[] { "value1", "value2" };
+            _repository = repository;
+        }
+        // GET api/values
+        [HttpGet]
+        public IEnumerable<ProjectViewModel> GetProjects()
+        {
+            var projects = _repository.GetAll<Project>().Take(10);
+            var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
+
+            return projectsVm;
         }
 
         // GET api/values/5
