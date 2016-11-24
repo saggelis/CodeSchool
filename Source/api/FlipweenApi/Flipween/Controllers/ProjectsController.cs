@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace FlipWeen.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ProjectsController : BaseController
     {
         IDataRepository _repository;
@@ -21,33 +21,45 @@ namespace FlipWeen.Controllers
         }
         // GET api/values
         [HttpGet]
+        [Route("api/projects/getprojects")]
         public IEnumerable<ProjectViewModel> GetProjects()
         {
-            var projects = _repository.GetAll<Project>().Take(10);
+            var projects = _repository.GetAll<Project>().Take(10).ToList();
             var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
             return projectsVm;
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        // GET api/values
+        [HttpGet]
+        [Route("api/projects/categories")]
+        public IEnumerable<ProjectCategoryViewModel> GetProjectCategories()
         {
-            return "value";
+            var projectCategories = _repository.GetAll<ProjectCategory>().Take(10).ToList();
+            var projectCategoriesVm = Mapper.Map<IEnumerable<ProjectCategory>, IEnumerable<ProjectCategoryViewModel>>(projectCategories);
+
+            return projectCategoriesVm;
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
+        //// GET api/values/5
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// POST api/values
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+        //// PUT api/values/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/values/5
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

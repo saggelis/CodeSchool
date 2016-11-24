@@ -19,7 +19,8 @@ namespace Flipween.Core.Mappings
             SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
             DestinationMemberNamingConvention = new PascalCaseNamingConvention();
             CreateMap<Project, ProjectViewModel>();
-         
+            CreateMap<ProjectCategory, ProjectCategoryViewModel>();
+
         }
     }
 }

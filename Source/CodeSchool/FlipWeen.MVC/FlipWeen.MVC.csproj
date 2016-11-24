@@ -180,7 +180,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Client\ApiExtensions.cs" />
     <Compile Include="Client\HttpClientInstance.cs" />
+    <Compile Include="Client\IDataClient.cs" />
     <Compile Include="Client\ILoginClient.cs" />
+    <Compile Include="Client\DataClient.cs" />
     <Compile Include="Client\LoginClient.cs" />
     <Compile Include="Client\TokenContainer.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -193,8 +195,12 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProjectCategoryViewModel.cs" />
+    <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\ProjectResponse.cs" />
     <Compile Include="Responses\RegisterResponse.cs" />
+    <Compile Include="Responses\ProjectCategoryResponse.cs" />
     <Compile Include="Responses\TokenResponse.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -257,6 +263,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\HowItWorks.cshtml" />
+    <Content Include="Views\Home\Projects.cshtml" />
+    <Content Include="Views\Home\ProjectCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<FlipWeen.MVC.Models.ProjectCategoryViewModel>
+@{
+    ViewBag.Title = "How It Works";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<h4>Project Categories</h4>
+
+@foreach (var category in Model)
+{
+    <tr>
+        <td>@category.Name</td>
+        @foreach (var project in category.Projects)
+        {
+        <tr>
+            <td>@project.Description</td>
+
+        </tr>
+        }
+    </tr>
+}
+
+
+
+
+
+

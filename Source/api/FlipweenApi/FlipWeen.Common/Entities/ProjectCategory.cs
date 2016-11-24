@@ -19,5 +19,21 @@ namespace FlipWeen.Common.Entities
         [MaxLength(500)]
         public virtual string Image { get; set; }
 
+        private ICollection<Project> _projects;
+
+        public virtual ICollection<Project> Projects
+        {
+            get
+            {
+                return _projects ?? (_projects = new HashSet<Project>());
+            }
+
+            set
+            {
+                _projects = value;
+            }
+        }
+
+
     }
 }

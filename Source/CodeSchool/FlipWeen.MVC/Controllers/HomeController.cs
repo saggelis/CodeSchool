@@ -1,6 +1,9 @@
-﻿using System;
+﻿using FlipWeen.MVC.Api;
+using FlipWeen.MVC.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,6 +11,21 @@ namespace FlipWeen.MVC.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly IDataClient _dataClient;
+        private readonly ITokenContainer _tokenContainer;
+
+        public HomeController()
+        {
+            _tokenContainer = new TokenContainer();
+            var apiClient = new ApiClient(HttpClientInstance.Instance, _tokenContainer);
+            _dataClient = new DataClient(apiClient);
+        }
+        public HomeController(IDataClient loginClient, ITokenContainer tokenContainer)
+        {
+            this._dataClient = loginClient;
+            this._tokenContainer = tokenContainer;
+        }
         public ActionResult Index()
         {
             return View();
@@ -32,6 +50,25 @@ namespace FlipWeen.MVC.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
+        }
+
+        public async Task<ActionResult> Projects()
+        {
+            var response = await _dataClient.GetProjects();
+         
+
+            return View(response.Data);
+        }
+
+        public async Task<ActionResult> ProjectCategories()
+        {
+            var response = await _dataClient.GetProjectCategories();
+
+            var model = new
+            {
+                response.Data
+            };
+            return View(model);
         }
     }
 }
