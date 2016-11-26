@@ -12,8 +12,10 @@ namespace FlipWeen.MVC.Client
 
     public class DataClient : ClientBase, IDataClient
     {
-        private const string projectsUri = "api/projects/getprojects";
-        private const string projectCategoriesUri = "api/projects/categories";
+        private const string projectsLatestUri = "api/projects/latest";
+        private const string projectsByCategoryUri = "api/projects/category";
+        private const string projectsSearchUri = "api/projects/search";
+        private const string categoriesUri = "api/projects/categories";
 
         public DataClient(IApiClient apiClient) : base(apiClient)
         {
@@ -21,23 +23,26 @@ namespace FlipWeen.MVC.Client
 
         public async Task<ProjectCategoryResponse> GetProjectCategories()
         {
-            var response = await this.GetJsonDecodedContent<ProjectCategoryResponse, IEnumerable<ProjectCategoryViewModel>>(projectCategoriesUri);
+          return await this.GetJsonDecodedContent<ProjectCategoryResponse, IEnumerable<ProjectCategoryViewModel>>(categoriesUri);
           
-            if (!response.StatusIsSuccessful)
-            {
-                
-              
-            }
-            return response;
         }
 
-        public async Task<ProjectResponse> GetProjects(int? categoryId=null)
+        public async Task<ProjectsResponse> GetLatestProjects()
         {
-          
-            var response = await ApiClient.GetFormEncodedContent(projectsUri);
-            return  await CreateJsonResponse<ProjectResponse>(response);
-               
+            var response = await ApiClient.GetFormEncodedContent(projectsLatestUri);
+            return  await CreateJsonResponse<ProjectsResponse>(response);
+        }
 
+        public async Task<ProjectsResponse> GetProjectsByCategory(int categoryId)
+        {
+            var response = await ApiClient.GetFormEncodedContent(projectsByCategoryUri, "categoryId".AsPair(categoryId.ToString()));
+            return await CreateJsonResponse<ProjectsResponse>(response);
+        }
+
+        public async Task<ProjectsResponse> SearchProjects(string projectName)
+        {
+            var response = await ApiClient.GetFormEncodedContent(projectsSearchUri, "projectName".AsPair(projectName));
+            return await CreateJsonResponse<ProjectsResponse>(response);
         }
     }
 }

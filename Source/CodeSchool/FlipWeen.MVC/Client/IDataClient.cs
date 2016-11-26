@@ -9,6 +9,9 @@ namespace FlipWeen.MVC.Client
     public interface IDataClient
     {
         Task<ProjectCategoryResponse> GetProjectCategories();
-        Task<ProjectResponse> GetProjects(int? categoryId = null);
+        Task<ProjectsResponse> GetLatestProjects();
+        Task<ProjectsResponse> GetProjectsByCategory(int categoryId);
+        Task<ProjectsResponse> SearchProjects(string projectName);
+       
     }
 }

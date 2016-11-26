@@ -54,9 +54,8 @@ namespace FlipWeen.MVC.Controllers
 
         public async Task<ActionResult> Projects()
         {
-            var response = await _dataClient.GetProjects();
+            var response = await _dataClient.GetLatestProjects();
          
-
             return View(response.Data);
         }
 

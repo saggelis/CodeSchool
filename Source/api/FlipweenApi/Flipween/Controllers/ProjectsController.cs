@@ -21,45 +21,52 @@ namespace FlipWeen.Controllers
         }
         // GET api/values
         [HttpGet]
-        [Route("api/projects/getprojects")]
-        public IEnumerable<ProjectViewModel> GetProjects()
+        [Route("api/projects/latest")]
+        public IEnumerable<ProjectViewModel> GetLatestProjects()
         {
-            var projects = _repository.GetAll<Project>().Take(10).ToList();
+            var projects = _repository.GetAll<Project>()
+                .Take(10)
+                .ToList();
             var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
             return projectsVm;
         }
 
-        // GET api/values
+        [HttpGet]
+        [Route("api/projects/category")]
+        public IEnumerable<ProjectViewModel> GetProjectsByCategory(int categoryId)
+        {
+            var projects = _repository.GetAll<Project>()
+                .Where(x=>x.CategoryId==categoryId)
+                .ToList();
+            var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
+
+            return projectsVm;
+        }
+
+        [HttpGet]
+        [Route("api/projects/search")]
+        public IEnumerable<ProjectViewModel> SearchProjects(string projectName)
+        {
+            var projects = _repository.GetAll<Project>()
+                .Where(x=>x.Name.Contains(projectName))
+                .ToList();
+            var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
+
+            return projectsVm;
+        }
+        
+
         [HttpGet]
         [Route("api/projects/categories")]
         public IEnumerable<ProjectCategoryViewModel> GetProjectCategories()
         {
-            var projectCategories = _repository.GetAll<ProjectCategory>().Take(10).ToList();
+            var projectCategories = _repository.GetAll<ProjectCategory>()
+                .ToList();
             var projectCategoriesVm = Mapper.Map<IEnumerable<ProjectCategory>, IEnumerable<ProjectCategoryViewModel>>(projectCategories);
 
             return projectCategoriesVm;
         }
 
-        //// GET api/values/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST api/values
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        //// PUT api/values/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE api/values/5
-        //public void Delete(int id)
-        //{
-        //}
     }
 }
