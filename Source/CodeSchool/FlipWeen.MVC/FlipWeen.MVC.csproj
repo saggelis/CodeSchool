@@ -269,6 +269,8 @@
     <Content Include="Views\Home\Projects.cshtml" />
     <Content Include="Views\Home\Explore.cshtml" />
     <Content Include="Views\Projects\ProjectCreation.cshtml" />
+    <Content Include="Views\Projects\ProjectView.cshtml" />
+    <Content Include="Views\Projects\ProjectEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
