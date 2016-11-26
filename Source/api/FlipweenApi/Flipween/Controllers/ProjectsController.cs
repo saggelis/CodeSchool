@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace FlipWeen.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ProjectsController : BaseController
     {
         IDataRepository _repository;

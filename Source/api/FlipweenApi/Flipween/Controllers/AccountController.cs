@@ -74,7 +74,8 @@ namespace FlipWeen.Controllers
             return new UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
-                HasRegistered = externalLogin == null,
+                UserId = User.Identity.GetUserId<int>(),
+                FullName = User.Identity.GetFullName(),
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
         }

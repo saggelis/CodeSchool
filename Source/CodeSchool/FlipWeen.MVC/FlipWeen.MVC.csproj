@@ -201,6 +201,7 @@
     <Compile Include="Responses\ProjectResponse.cs" />
     <Compile Include="Responses\RegisterResponse.cs" />
     <Compile Include="Responses\ProjectCategoryResponse.cs" />
+    <Compile Include="Responses\UserInfoResponse.cs" />
     <Compile Include="Responses\TokenResponse.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

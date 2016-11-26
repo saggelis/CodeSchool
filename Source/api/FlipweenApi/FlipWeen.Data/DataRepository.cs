@@ -98,6 +98,7 @@ namespace FlipWeen.Data
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync( user, authenticationType);
             // Add custom user claims here
+            userIdentity.AddClaim(new Claim("FullName", user.FullName.ToString()));
             return userIdentity;
         }
 
