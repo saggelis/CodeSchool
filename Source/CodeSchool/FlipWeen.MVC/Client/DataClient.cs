@@ -16,6 +16,7 @@ namespace FlipWeen.MVC.Client
         private const string projectsByCategoryUri = "api/projects/category";
         private const string projectsSearchUri = "api/projects/search";
         private const string categoriesUri = "api/projects/categories";
+        private const string projectCreateUri = "api/projects/createprojects";
 
         public DataClient(IApiClient apiClient) : base(apiClient)
         {
@@ -44,5 +45,27 @@ namespace FlipWeen.MVC.Client
             var response = await ApiClient.GetFormEncodedContent(projectsSearchUri, "projectName".AsPair(projectName));
             return await CreateJsonResponse<ProjectsResponse>(response);
         }
+        public async Task<ProjectsResponse> Createproject(ProjectCreationBindingModel model)
+        {
+
+            var projectModel = new ProjectCreationBindingModel
+            {
+                Name = model.Name,
+                Image = model.Image,
+                CategoryId = model.CategoryId,
+                CreationDate = model.CreationDate,
+                EndDate = model.EndDate,
+                TargetAmount = model.TargetAmount,
+                Description = model.Description,
+                Video = model.Video,
+                UserId = model.UserId
+                
+            };
+            var response = await ApiClient.PostJsonEncodedContent(projectCreateUri, projectModel);
+            var createprojectResponse = await CreateJsonResponse<ProjectsResponse>(response);
+            return createprojectResponse;
+
+        }
+
     }
 }

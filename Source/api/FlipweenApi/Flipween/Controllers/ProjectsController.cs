@@ -8,6 +8,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FlipWeen.Common.ViewModels;
+using FlipWeen.Data;
+using FlipWeen.Models;
+using FlipWeen.Providers;
+using FlipWeen.Results;
+using System.Threading.Tasks;
 
 namespace FlipWeen.Controllers
 {
@@ -66,6 +72,19 @@ namespace FlipWeen.Controllers
             var projectCategoriesVm = Mapper.Map<IEnumerable<ProjectCategory>, IEnumerable<ProjectCategoryViewModel>>(projectCategories);
 
             return projectCategoriesVm;
+        }
+        [HttpPost]
+//[Authorize]
+        [Route("api/projects/createprojects")]
+        public async Task<IHttpActionResult> Createproject(ProjectCreationBindingModel model)
+        {
+         
+
+            var project = new Project() { Name = model.Name, Description = model.Description, CreationDate = model.CreationDate, EndDate = model.EndDate, TargetAmount = model.TargetAmount, UserId = model.UserId, CategoryId = model.CategoryId, Image = model.Image,Video = model.Video };
+           
+            
+
+            return Ok();
         }
 
     }
