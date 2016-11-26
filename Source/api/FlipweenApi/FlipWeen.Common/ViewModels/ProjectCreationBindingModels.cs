@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using FlipWeen.Common.Entities;
 
 namespace FlipWeen.Common.ViewModels
 {
@@ -43,5 +44,6 @@ namespace FlipWeen.Common.ViewModels
         [Display(Name = "Please Insert Video Url")]
         public  string Video { get; set; }
 
+        public ICollection<ProjectCategoryViewModel> Categories { get; set; }
     }
 }

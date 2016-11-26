@@ -16,7 +16,7 @@ namespace FlipWeen.MVC.Models
       
         public string Image { get; set; }
 
-        public ICollection<ProjectViewModel> Projects { get; set; }
+        public IEnumerable<ProjectViewModel> Projects { get; set; }
 
     }
 }

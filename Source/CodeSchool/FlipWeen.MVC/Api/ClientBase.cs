@@ -60,8 +60,13 @@
         private static async Task<TResponse> DecodeJsonResponse<TResponse, TDecode>(HttpResponseMessage apiResponse) where TResponse : ApiResponse<TDecode>, new()
         {
             var response = await CreateJsonResponse<TResponse>(apiResponse);
-            response.Data = Json.Decode<TDecode>(response.ResponseResult);
+            if (response.StatusIsSuccessful)
+            {
+                response.Data = Json.Decode<TDecode>(response.ResponseResult);
+               
+            }
             return response;
         }
+
     }
 }

@@ -9,7 +9,7 @@ namespace FlipWeen.MVC.Client
     using Models;
     using Responses;
     using System.Dynamic;
-
+    using System;
     public class DataClient : ClientBase, IDataClient
     {
         private const string projectsLatestUri = "api/projects/latest";
@@ -27,7 +27,7 @@ namespace FlipWeen.MVC.Client
           return await this.GetJsonDecodedContent<ProjectCategoryResponse, IEnumerable<ProjectCategoryViewModel>>(categoriesUri);
           
         }
-
+        
         public async Task<ProjectsResponse> GetLatestProjects()
         {
             var response = await ApiClient.GetFormEncodedContent(projectsLatestUri);
@@ -53,7 +53,7 @@ namespace FlipWeen.MVC.Client
                 Name = model.Name,
                 Image = model.Image,
                 CategoryId = model.CategoryId,
-                CreationDate = model.CreationDate,
+                CreationDate = DateTime.Now,
                 EndDate = model.EndDate,
                 TargetAmount = model.TargetAmount,
                 Description = model.Description,

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using FlipWeen.MVC.Api;
+using System.Web.Mvc;
 
 namespace FlipWeen.MVC.Models
 {
@@ -43,6 +44,10 @@ namespace FlipWeen.MVC.Models
         [MaxLength(500)]
         [Display(Name = "Please Insert Video Url")]
         public string Video { get; set; }
-
+        public IEnumerable<SelectListItem> Categories { get; set; }
+        public ProjectCreationBindingModel()
+        {
+            this.Categories = new List<SelectListItem>();
+        }
+     }
     }
-}

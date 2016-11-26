@@ -73,15 +73,27 @@ namespace FlipWeen.Controllers
 
             return projectCategoriesVm;
         }
+
         [HttpPost]
-//[Authorize]
         [Route("api/projects/createprojects")]
-        public async Task<IHttpActionResult> Createproject(ProjectCreationBindingModel model)
+        public async Task<IHttpActionResult> CreateProject(ProjectCreationBindingModel model)
         {
          
+            var project = new Project() {
+                Name = model.Name,
+                Description = model.Description,
+                CreationDate = model.CreationDate,
+                EndDate = model.EndDate,
+                TargetAmount = model.TargetAmount,
+                UserId = model.UserId,
+                CategoryId = model.CategoryId,
+                Image = model.Image,
+                Video = model.Video,
+                GlobalId=Guid.NewGuid().ToString(),
 
-            var project = new Project() { Name = model.Name, Description = model.Description, CreationDate = model.CreationDate, EndDate = model.EndDate, TargetAmount = model.TargetAmount, UserId = model.UserId, CategoryId = model.CategoryId, Image = model.Image,Video = model.Video };
-           
+            };
+            _repository.Add(project);
+            _repository.SaveChanges();
             
 
             return Ok();
