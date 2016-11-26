@@ -5,14 +5,15 @@ namespace FlipWeen.MVC.Client
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-  
+
     using Models;
     using Responses;
+    using System.Dynamic;
 
     public class DataClient : ClientBase, IDataClient
     {
         private const string projectsUri = "api/projects/getprojects";
-        private const string projectCategoriesUri = "api/projects/getcategories";
+        private const string projectCategoriesUri = "api/projects/categories";
 
         public DataClient(IApiClient apiClient) : base(apiClient)
         {
@@ -20,8 +21,14 @@ namespace FlipWeen.MVC.Client
 
         public async Task<ProjectCategoryResponse> GetProjectCategories()
         {
-            var response = await ApiClient.GetFormEncodedContent(projectCategoriesUri);
-            return await CreateJsonResponse<ProjectCategoryResponse>(response);
+            var response = await this.GetJsonDecodedContent<ProjectCategoryResponse, IEnumerable<ProjectCategoryViewModel>>(projectCategoriesUri);
+          
+            if (!response.StatusIsSuccessful)
+            {
+                
+              
+            }
+            return response;
         }
 
         public async Task<ProjectResponse> GetProjects(int? categoryId=null)

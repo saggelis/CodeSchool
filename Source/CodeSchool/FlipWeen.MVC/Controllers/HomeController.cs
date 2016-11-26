@@ -60,15 +60,12 @@ namespace FlipWeen.MVC.Controllers
             return View(response.Data);
         }
 
-        public async Task<ActionResult> ProjectCategories()
+        public async Task<ActionResult> Explore()
         {
             var response = await _dataClient.GetProjectCategories();
 
-            var model = new
-            {
-                response.Data
-            };
-            return View(model);
+            
+            return View(response.Data);
         }
     }
 }
