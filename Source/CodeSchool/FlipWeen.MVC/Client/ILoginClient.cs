@@ -10,5 +10,7 @@ namespace FlipWeen.MVC.Client
     {
         Task<TokenResponse> Login(string email, string password);
         Task<RegisterResponse> Register(RegisterViewModel viewModel);
+
+        Task<UserInfoResponse> GetUserInfo();
     }
 }

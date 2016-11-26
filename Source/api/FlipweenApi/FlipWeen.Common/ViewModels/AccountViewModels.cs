@@ -28,6 +28,10 @@ namespace FlipWeen.Common.ViewModels
     {
         public string Email { get; set; }
 
+        public string FullName { get; set; }
+
+        public int UserId { get; set; }
+
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }

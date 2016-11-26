@@ -13,6 +13,7 @@ namespace FlipWeen.MVC.Client
     {
         private const string RegisterUri = "api/account/register";
         private const string TokenUri = "token";
+        private const string userInfoUri = "api/account/UserInfo";
 
         public LoginClient(IApiClient apiClient) : base(apiClient)
         {
@@ -53,6 +54,11 @@ namespace FlipWeen.MVC.Client
             var response = await ApiClient.PostJsonEncodedContent(RegisterUri, apiModel);
             var registerResponse = await CreateJsonResponse<RegisterResponse>(response);
             return registerResponse;
+        }
+
+        public async Task<UserInfoResponse> GetUserInfo()
+        {
+            return await this.GetJsonDecodedContent<UserInfoResponse, UserInfoViewModel>(userInfoUri);
         }
     }
 }

@@ -135,4 +135,17 @@ namespace FlipWeen.MVC.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class UserInfoViewModel
+    {
+        public string Email { get; set; }
+
+        public string FullName { get; set; }
+
+        public int UserId { get; set; }
+
+        public bool HasRegistered { get; set; }
+
+        public string LoginProvider { get; set; }
+    }
 }

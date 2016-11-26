@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Security.Principal;
 
 namespace FlipWeen.Common
 {
@@ -38,6 +39,16 @@ namespace FlipWeen.Common
         public virtual string FullName { get; set; }
     }
 
-  
+    public static class IdentityExtensions
+    {
+        public static string GetFullName(this IIdentity identity)
+        {
+            var claim = ((ClaimsIdentity)identity).FindFirst("FullName");
+            // Test for null to avoid issues during local testing
+            return (claim != null) ? claim.Value : string.Empty;
+        }
+    }
+
+
 }
 

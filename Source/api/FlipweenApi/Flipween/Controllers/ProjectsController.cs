@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace FlipWeen.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ProjectsController : BaseController
     {
         IDataRepository _repository;

@@ -124,6 +124,10 @@ namespace FlipWeen.MVC.Controllers
             {
              
                 _tokenContainer.ApiToken = response.Data;
+                var userInfoResponse = await _loginClient.GetUserInfo();
+                _tokenContainer.UserId =  userInfoResponse.Data.UserId;
+                _tokenContainer.FullName = userInfoResponse.Data.FullName;
+
             }
 
             return response.StatusIsSuccessful;
