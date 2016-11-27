@@ -63,8 +63,23 @@ namespace CodeSchool.Controllers
             }
             model.UserId = _tokenContainer.UserId.Value;
             var responseCreate = await _dataClient.Createproject(model);
-            return View(model);
+            //return View(model);
+            if (responseCreate.StatusIsSuccessful)
+
+            {
+                TempData["Success"] = "Added Successfully!";
+            }
+            else
+                TempData["Error"] = "Did not add project";
+
+            return RedirectToAction("ProjectCreation", "Projects");
         }
+
+
+
+    
+
+
     }
 
 }
