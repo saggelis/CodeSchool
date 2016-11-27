@@ -7,10 +7,10 @@
 <h2>ProjectCreation</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("ProjectCreation", "Projects", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ProjectCreationBindingModel</h4>
         <hr />
@@ -49,7 +49,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-              @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Value", "Text"), "  -----Select List-----  ")
+                @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Value", "Text"), "  -----Select List-----  ", new { @class = "form-control" })
             </div>
         </div>
 
@@ -72,6 +72,14 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
+                @if (TempData["Success"] != null)
+                {
+                    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <p class="alert alert-warning" id="warningMessage">@TempData["Error"]</p>
+                }
             </div>
         </div>
     </div>
@@ -79,7 +87,7 @@
 <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="box_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Explore", "Home")
 </div>
 
 @section Scripts {
