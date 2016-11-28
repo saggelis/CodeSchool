@@ -87,7 +87,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="DataRepository.cs" />
+    <Compile Include="ApiDataRepository.cs" />
+    <Compile Include="BaseDataRepository.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace CodeSchool.Controllers
 {
+
     public class ProjectsController : Controller
     {
 
@@ -31,41 +32,60 @@ namespace CodeSchool.Controllers
             this._tokenContainer = tokenContainer;
         }
 
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> Project(int projectId)
+        {
+            var response = await _dataClient.GetProject(projectId);
+          
+            return View(response.Data);
+        }
+
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> ProjectCreation()
         {
             var response = await _dataClient.GetProjectCategories();
-
             var model = new ProjectCreationBindingModel();
-
-            model.Categories = response.Data.ToList().Select(x => new SelectListItem
+            if (response.StatusIsSuccessful)
             {
-                Value = x.Id.ToString(),
-                Text = x.Name
-            });
-       
+                if (response.Data != null)
+                    model.Categories = response.Data.ToList().Select(x => new SelectListItem
+                    {
+                        Value = x.Id.ToString(),
+                        Text = x.Name
+                    });
+            }
+            if(response.ResponseCode==System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> ProjectCreation(ProjectCreationBindingModel model)
         {
             var response = await _dataClient.GetProjectCategories();
-            model.Categories = response.Data.ToList().Select(x => new SelectListItem
+            if (response.StatusIsSuccessful)
             {
-                Value = x.Id.ToString(),
-                Text = x.Name
-            });
-
+                if (response.Data != null)
+                    model.Categories = response.Data.ToList().Select(x => new SelectListItem
+                    {
+                        Value = x.Id.ToString(),
+                        Text = x.Name
+                    });
+            }
             if (!ModelState.IsValid)
             {
-               
+
             }
             model.UserId = _tokenContainer.UserId.Value;
             var responseCreate = await _dataClient.Createproject(model);
             //return View(model);
             if (responseCreate.StatusIsSuccessful)
-
             {
                 TempData["Success"] = "Added Successfully!";
             }
@@ -74,11 +94,6 @@ namespace CodeSchool.Controllers
 
             return RedirectToAction("ProjectCreation", "Projects");
         }
-
-
-
-    
-
 
     }
 

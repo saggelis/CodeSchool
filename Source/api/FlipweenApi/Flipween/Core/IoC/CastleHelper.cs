@@ -38,7 +38,7 @@ namespace Flipween.Core.IoC
 
             return _resolver;
         }
-        
+
         //private static void BootstrapContainer()
         //{
         //    var container = new WindsorContainer().Install(FromAssembly.This());
@@ -53,7 +53,7 @@ namespace Flipween.Core.IoC
             //container
             //    .Register(Types
             //        .FromAssemblyInDirectory(new AssemblyFilter(AssemblyDirectory).FilterByName(x => x.FullName.Contains("FlipWeen")))
-                   
+
             //        .Pick()
             //        .If(x => x.IsPublic)
             //        .If(x => x.GetInterfaces().Length > 0)
@@ -75,9 +75,13 @@ namespace Flipween.Core.IoC
             container.Register(//Component.For<IDbContext>()
             //                  .ImplementedBy<DataContext>()
             //                  .LifestylePerWebRequest(),
-                     Component.For(typeof(IDataRepository))
-                              .ImplementedBy(typeof(DataRepository))
-                              .LifestylePerWebRequest());
+                         Component.For(typeof(IDataRepository))
+                              .ImplementedBy(typeof(BaseDataRepository))
+                              .LifestylePerWebRequest(),
+                        Component.For(typeof(IApiDataRepository))
+                            .ImplementedBy(typeof(ApiDataRepository))
+                            .LifestylePerWebRequest()
+                              );
 
             container.Register(Classes.FromThisAssembly()
              .BasedOn<ApiController>()

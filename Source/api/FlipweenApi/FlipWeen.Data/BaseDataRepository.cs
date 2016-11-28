@@ -20,7 +20,7 @@ namespace FlipWeen.Data
     /// A generic repository for working with data in the database
     /// </summary>
     /// <typeparam name="T">A POCO that represents an Entity Framework entity</typeparam>
-    public class DataRepository : IDataRepository
+    public class BaseDataRepository : IDataRepository
     {
         /// <summary>
         /// The context object for the database
@@ -31,7 +31,7 @@ namespace FlipWeen.Data
         /// Initializes a new instance of the GenericRepository class
         /// </summary>
         /// <param name="context">The Entity Framework ObjectContext</param>
-        public DataRepository(IDbContext context)
+        public BaseDataRepository(IDbContext context)
         {
             _context = context;
            
@@ -83,7 +83,7 @@ namespace FlipWeen.Data
         }
         
 
-        void IDataRepository.SaveChanges()
+        public void SaveChanges()
         {
             using (var transaction = new TransactionScope())
             {

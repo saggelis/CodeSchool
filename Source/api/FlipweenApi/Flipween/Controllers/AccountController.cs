@@ -32,10 +32,10 @@ namespace FlipWeen.Controllers
         private ApplicationUserManager _userManager;
         
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IDataRepository repo)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IApiDataRepository repo)
         {
             UserManager = userManager;
-            IDataRepository _repo = repo;
+            IApiDataRepository _repo = repo;
             AccessTokenFormat = accessTokenFormat;
         }
 
@@ -272,7 +272,7 @@ namespace FlipWeen.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                var repo = new DataRepository(DataContext.Create());
+                var repo = new BaseDataRepository(DataContext.Create());
                  ClaimsIdentity oAuthIdentity = await repo.GenerateUserIdentityAsync(user,UserManager,
                     OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await repo.GenerateUserIdentityAsync(user,UserManager,

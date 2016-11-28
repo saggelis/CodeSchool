@@ -41,7 +41,7 @@ namespace FlipWeen.Providers
                 return;
             }
 
-            var repo = new DataRepository(DataContext.Create());
+            var repo = new BaseDataRepository(DataContext.Create());
 
             ClaimsIdentity oAuthIdentity = await repo.GenerateUserIdentityAsync(user,userManager,
                OAuthDefaults.AuthenticationType);

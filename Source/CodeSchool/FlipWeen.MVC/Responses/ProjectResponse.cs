@@ -8,4 +8,8 @@ namespace FlipWeen.MVC.Responses.Responses
     public class ProjectsResponse : ApiResponse<IEnumerable<ProjectViewModel>>
     {
     }
+
+    public class ProjectResponse : ApiResponse<ProjectViewModel>
+    {
+    }
 }

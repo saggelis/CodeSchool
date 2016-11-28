@@ -20,8 +20,8 @@ namespace FlipWeen.Controllers
     [Authorize]
     public class ProjectsController : BaseController
     {
-        IDataRepository _repository;
-        public ProjectsController(IDataRepository repository)
+        IApiDataRepository _repository;
+        public ProjectsController(IApiDataRepository repository)
         {
             _repository = repository;
         }
@@ -30,21 +30,27 @@ namespace FlipWeen.Controllers
         [Route("api/projects/latest")]
         public IEnumerable<ProjectViewModel> GetLatestProjects()
         {
-            var projects = _repository.GetAll<Project>()
-                .Take(10)
-                .ToList();
+            var projects = _repository.GetLatestProjects();
             var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
             return projectsVm;
         }
 
         [HttpGet]
+        [Route("api/projects/project")]
+        public ProjectViewModel GetProject(int projectId)
+        {
+            var project = _repository.GetProject(projectId);
+            var projectVm = Mapper.Map<Project, ProjectViewModel>(project);
+
+            return projectVm;
+        }
+
+        [HttpGet]
         [Route("api/projects/category")]
         public IEnumerable<ProjectViewModel> GetProjectsByCategory(int categoryId)
         {
-            var projects = _repository.GetAll<Project>()
-                .Where(x=>x.CategoryId==categoryId)
-                .ToList();
+            var projects = _repository.GetProjectsByCategory(categoryId);
             var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
             return projectsVm;
@@ -54,9 +60,7 @@ namespace FlipWeen.Controllers
         [Route("api/projects/search")]
         public IEnumerable<ProjectViewModel> SearchProjects(string projectName)
         {
-            var projects = _repository.GetAll<Project>()
-                .Where(x=>x.Name.Contains(projectName))
-                .ToList();
+            var projects = _repository.SearchProjects(projectName);
             var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
             return projectsVm;
@@ -67,8 +71,7 @@ namespace FlipWeen.Controllers
         [Route("api/projects/categories")]
         public IEnumerable<ProjectCategoryViewModel> GetProjectCategories()
         {
-            var projectCategories = _repository.GetAll<ProjectCategory>()
-                .ToList();
+            var projectCategories = _repository.GetProjectCategories();
             var projectCategoriesVm = Mapper.Map<IEnumerable<ProjectCategory>, IEnumerable<ProjectCategoryViewModel>>(projectCategories);
 
             return projectCategoriesVm;
@@ -76,9 +79,8 @@ namespace FlipWeen.Controllers
 
         [HttpPost]
         [Route("api/projects/createprojects")]
-        public async Task<IHttpActionResult> CreateProject(ProjectCreationBindingModel model)
+        public  IHttpActionResult CreateProject(ProjectCreationBindingModel model)
         {
-         
             var project = new Project() {
                 Name = model.Name,
                 Description = model.Description,
@@ -92,10 +94,8 @@ namespace FlipWeen.Controllers
                 GlobalId=Guid.NewGuid().ToString(),
 
             };
-            _repository.Add(project);
-            _repository.SaveChanges();
-            
-
+            _repository.CreateProject(project);
+          
             return Ok();
         }
 

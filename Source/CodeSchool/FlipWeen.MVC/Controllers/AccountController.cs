@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FlipWeen.MVC.Models;
+using System.Collections.Generic;
 
 namespace FlipWeen.MVC.Controllers
 {
@@ -124,6 +125,23 @@ namespace FlipWeen.MVC.Controllers
             {
              
                 _tokenContainer.ApiToken = response.Data;
+
+                AuthenticationProperties options = new AuthenticationProperties();
+
+                options.AllowRefresh = true;
+                options.IsPersistent = true;
+                options.ExpiresUtc = DateTime.UtcNow.AddSeconds(3600);
+
+                var claims = new[]
+                {
+                    new Claim(ClaimTypes.Name, email),
+                    new Claim("AcessToken", string.Format("Bearer {0}", _tokenContainer.ApiToken)),
+                };
+
+                var identity = new ClaimsIdentity(claims, "ApplicationCookie");
+
+                Request.GetOwinContext().Authentication.SignIn(options, identity);
+
                 var userInfoResponse = await _loginClient.GetUserInfo();
                 _tokenContainer.UserId =  userInfoResponse.Data.UserId;
                 _tokenContainer.FullName = userInfoResponse.Data.FullName;
@@ -442,7 +460,8 @@ namespace FlipWeen.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Request.GetOwinContext().Authentication.SignOut("ApplicationCookie");
             return RedirectToAction("Index", "Home");
         }
 

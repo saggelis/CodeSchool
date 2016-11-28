@@ -35,7 +35,7 @@ namespace Flipween.Core.IoC
                               .ImplementedBy<DataContext>()
                               .LifestylePerWebRequest(),
                      Component.For(typeof(IDataRepository))
-                              .ImplementedBy(typeof(DataRepository))
+                              .ImplementedBy(typeof(BaseDataRepository))
                               .LifestylePerWebRequest());
         }
         

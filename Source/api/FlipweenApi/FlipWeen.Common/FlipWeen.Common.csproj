@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IApiDataRepository.cs" />
     <Compile Include="Data\IDataRepository.cs" />
     <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Entities\Reward.cs" />
