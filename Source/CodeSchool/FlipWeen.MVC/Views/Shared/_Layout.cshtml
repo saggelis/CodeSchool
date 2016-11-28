@@ -10,6 +10,19 @@
 
 </head>
 <body>
+<<<<<<< HEAD
+    <div id="fb-root"></div>
+    <script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=177425402721884";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+    </script>
+=======
+>>>>>>> d7f1106a707d6cf22766e7f120e49d27d222145d
     <div class="navbar navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -29,7 +42,7 @@
                         <ul class="nav navbar-nav">
                             @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                             <li>@Html.ActionLink("How it works", "HowItWorks", "Home", new { area = "" }, new { @class = "how-it-works_link" })</li>
-                            <li>@Html.ActionLink("Start a Project", "HowItWorks", "Home", new { area = "" }, new { @class = "start-a-project_link" })</li>
+                            <li>@Html.ActionLink("Start a Project", "ProjectCreation", "Projects", new { area = "" }, new { @class = "start-a-project_link" })</li>
                             <li>@Html.ActionLink("Explore", "Explore", "Home", new { area = "" }, new { @class = "start-a-project_link" })</li>
                             <li>@Html.ActionLink("How it works", "HowItWorks", "Home", new { area = "" }, new { @class = "start-a-project_link" })</li>
                             <li>@Html.ActionLink("Sign up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "sign-up_link" })</li>
