@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using FlipWeen.Common;
 using FlipWeen.Common.Entities;
+using FlipWeen.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,7 @@ namespace Flipween.Core.Mappings
             SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
             DestinationMemberNamingConvention = new PascalCaseNamingConvention();
             CreateMap<Project, ProjectViewModel>();
+            CreateMap<ApplicationUser, UserInfoViewModel>();
             CreateMap<ProjectCategory, ProjectCategoryViewModel>();
 
         }

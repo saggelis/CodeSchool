@@ -307,7 +307,7 @@
     <Content Include="Views\Projects\ProjectCreation.cshtml" />
     <Content Include="Views\Projects\ProjectView.cshtml" />
     <Content Include="Views\Projects\ProjectEdit.cshtml" />
-    <Content Include="Views\Projects\ProjectPageView.cshtml" />
+    <Content Include="Views\Projects\ProjectPage.cshtml" />
     <Content Include="Views\Projects\_ProjectSmallPartial.cshtml" />
     <Content Include="Views\Projects\_PackagesPartial.cshtml" />
     <Content Include="Views\Projects\ProjectExploreView.cshtml" />

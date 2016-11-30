@@ -34,7 +34,7 @@ namespace CodeSchool.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult> Project(int projectId)
+        public async Task<ActionResult> ProjectPage(int projectId)
         {
             var response = await _dataClient.GetProject(projectId);
           

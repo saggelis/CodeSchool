@@ -30,5 +30,16 @@ namespace FlipWeen.MVC.Models
 
         public string Video { get; set; }
 
+        public int ProgressPercent { get; set; }
+
+        public int BackersNo { get; set; }
+
+        public int DaysLeft { get; set; }
+
+        public double CurrentAmount { get; set; }
+
+        public  UserInfoViewModel User { get; set; }
+     
+
     }
 }

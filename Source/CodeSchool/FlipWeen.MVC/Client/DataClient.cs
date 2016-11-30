@@ -47,10 +47,10 @@ namespace FlipWeen.MVC.Client
             return await CreateJsonResponse<ProjectsResponse>(response);
         }
 
-        public async Task<ProjectsResponse> GetProject(int projectId)
+        public async Task<ProjectResponse> GetProject(int projectId)
         {
-            var response = await ApiClient.GetFormEncodedContent(projectsSearchUri, "projectId".AsPair(projectId.ToString()));
-            return await CreateJsonResponse<ProjectsResponse>(response);
+            return await this.GetJsonDecodedContent<ProjectResponse,ProjectViewModel>(projectByIdUri, "projectId".AsPair(projectId.ToString()));
+           // return await CreateJsonResponse<ProjectResponse>(response);
         }
 
         public async Task<ProjectsResponse> Createproject(ProjectCreationBindingModel model)

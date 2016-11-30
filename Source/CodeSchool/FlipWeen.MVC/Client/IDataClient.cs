@@ -12,7 +12,7 @@ namespace FlipWeen.MVC.Client
         Task<ProjectsResponse> GetLatestProjects();
         Task<ProjectsResponse> GetProjectsByCategory(int categoryId);
         Task<ProjectsResponse> SearchProjects(string projectName);
-        Task<ProjectsResponse> GetProject(int projectId);
+        Task<ProjectResponse> GetProject(int projectId);
         Task<ProjectsResponse> Createproject(ProjectCreationBindingModel model);
 
     }
