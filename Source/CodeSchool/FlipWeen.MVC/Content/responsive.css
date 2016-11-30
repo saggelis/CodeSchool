@@ -22,7 +22,7 @@
     #header .top-message{
         display: none;
     }
-    #header .wrap-top-menu .iBtnRed{
+    #header .wrap-top-menu .iBtnPurple{
         display: block;
     }
     .header-content .header-right{
@@ -269,7 +269,7 @@
     #header .top-menu .btn-toogle-menu{
         display: block;
     }
-    #header .wrap-top-menu .iBtnRed{
+    #header .wrap-top-menu .iBtnPurple{
         margin-top: 6px;
     }
     #header .main-nav{

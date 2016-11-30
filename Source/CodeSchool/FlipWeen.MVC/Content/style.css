@@ -785,7 +785,7 @@ a.fc-gray-dark,.fc-gray-dark{color: #999}
     .iX                {width:09px;height:09px;background-position: -16px -16px;cursor: pointer;}
     .iX:hover,.iXHover {width:09px;height:09px;background-position: -25px -16px;cursor: pointer;}
     .iPlugGray         {width:11px;height:11px;background-position: -34px -16px}
-    .iPlugRed          {width:11px;height:11px;background-position: -45px -16px}
+    .iPlugPurple          {width:11px;height:11px;background-position: -45px -16px}
     .iLocation         {width:09px;height:13px;background-position: -56px -16px}
     .iNext             {width:11px;height:16px;background-position: -65px -16px}
     .iNext:hover       {width:11px;height:16px;background-position: -76px -16px}
@@ -793,7 +793,7 @@ a.fc-gray-dark,.fc-gray-dark{color: #999}
     .iPrev:hover       {width:11px;height:16px;background-position: -87px -16px}
     /*row3*/
     .iBigX             {width:27px;height:27px;background-position: 0 -32px;cursor: pointer;}
-    .iBtnRed           {width:29px;height:25px;background-position: -27px -32px;cursor: pointer;}
+    .iBtnPurple          {width:29px;height:25px;background-position: -27px -32px;cursor: pointer;}
 
 
 /* 7.	Form
@@ -1203,10 +1203,10 @@ a.fc-gray-dark,.fc-gray-dark{color: #999}
     color: #92999d;
     margin: 0 20px 0 10px;
 }
-#header .wrap-top-menu .iBtnRed{
+#header .wrap-top-menu .iBtnPurple{
     display: none;
 }
-#header .wrap-top-menu .iBtnRed.active{
+#header .wrap-top-menu .iBtnPurple.active{
     background-position: -56px -32px;
 }
 
@@ -1627,7 +1627,7 @@ a.fc-gray-dark,.fc-gray-dark{color: #999}
     color: #9aa1a4;
 
 }
-.additional-info-line .btn-red{
+.additional-info-line .btn-purple{
     margin-top: 10px;
 }
 
