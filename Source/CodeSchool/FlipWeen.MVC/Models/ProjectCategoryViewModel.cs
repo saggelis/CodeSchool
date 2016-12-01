@@ -16,6 +16,8 @@ namespace FlipWeen.MVC.Models
       
         public string Image { get; set; }
 
+        public int ProjectCount { get; set; }
+
         public IEnumerable<ProjectViewModel> Projects { get; set; }
 
     }

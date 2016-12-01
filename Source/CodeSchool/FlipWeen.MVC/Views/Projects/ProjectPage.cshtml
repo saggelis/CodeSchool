@@ -4,12 +4,10 @@
     ViewBag.Title = "";
 }
 
-<h2>ProjectPageView</h2>
-
 <div class="layout-2cols">
     <div class="content grid_8">
         <div class="project-detail">
-            <h2 class="rs project-title">"@Html.DisplayTextFor(model=>model.Name)</h2>
+            <h2 class="rs project-title">@Html.DisplayTextFor(model=>model.Name)</h2>
             <p class="rs post-by">by <a href="#">Jonh Doe</a></p>
             <div class="project-short big-thumb">
                 <div class="top-project-info">
@@ -17,11 +15,11 @@
                         <div class="thumb-img">
                             <div class="rslides_container">
                                 <ul class="rslides" id="slider1">
-                                    <li><img src="@Html.DisplayTextFor(model=>model.Image)" alt=""></li>
+                                    <li><img src="@Url.Content(Model.Image)" alt=""></li>
                                 </ul>
                             </div>
                         </div>
-                        <video src="@Html.DisplayTextFor(model=>model.Video)"></video>
+                        <video src="@Url.Content(Model.Video)"></video>
                     </div>
                 </div><!--end: .top-project-info -->
                 <div class="bottom-project-info clearfix">
@@ -31,17 +29,17 @@
                     <div class="group-fee clearfix">
                         <div class="fee-item">
                             <p class="rs lbl">Backers</p>
-                            <span class="val">"@Html.DisplayTextFor(model=>model.BackersNo)"</span>
+                            <span class="val">@Html.DisplayTextFor(model=>model.BackersNo)</span>
                         </div>
                         <div class="sep"></div>
                         <div class="fee-item">
                             <p class="rs lbl">Pledged</p>
-                            <span class="val">"@Html.DisplayTextFor(model=>model.CurrentAmount)"</span>
+                            <span class="val">@Html.DisplayTextFor(model=>model.CurrentAmount)</span>
                         </div>
                         <div class="sep"></div>
                         <div class="fee-item">
                             <p class="rs lbl">Days Left</p>
-                            <span class="val">"@Html.DisplayTextFor(model=>model.DaysLeft)"</span>
+                            <span class="val">@Html.DisplayTextFor(model=>model.DaysLeft)</span>
                         </div>
                     </div>
                     <div class="clear"></div>

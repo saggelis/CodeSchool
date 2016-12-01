@@ -1,17 +1,16 @@
-﻿<div class="project-short sml-thumb">
+﻿@model FlipWeen.MVC.Models.ProjectViewModel
+
+<div class="project-short sml-thumb">
     <div class="top-project-info">
         <div class="content-info-short clearfix">
             <a href="#" class="thumb-img">
-                <img src="images/ex/th-292x204-1.jpg" alt="$TITLE">
+                <img src="@Url.Content(Model.Image)" >
             </a>
             <div class="wrap-short-detail">
-                <h3 class="rs acticle-title"><a class="be-fc-orange" href="#">Project title</a></h3>
-                <p class="rs tiny-desc">by <a href="#" class="fw-b fc-gray be-fc-orange">John Doe</a></p>
-                <p class="rs title-description">Nam sit amet est sapien, a faucibus purus. Sed commodo facilisis tempus. Pellentesque placerat elementum adipiscing.</p>
-                <p class="rs project-location">
-                    <i class="icon iLocation"></i>
-                    New York, NY
-                </p>
+                <h3 class="rs acticle-title"><a class="be-fc-orange" href="#">@Html.DisplayTextFor(model => model.Name)</a></h3>
+                <p class="rs tiny-desc">by <a href="#" class="fw-b fc-gray be-fc-orange">@Html.DisplayTextFor(model => model.User.FullName)</a></p>
+                <p class="rs title-description">@Html.DisplayTextFor(model => model.Description)</p>
+               
             </div>
         </div>
     </div>
@@ -24,17 +23,17 @@
         <div class="group-fee clearfix">
             <div class="fee-item">
                 <p class="rs lbl">Funded</p>
-                <span class="val">50%</span>
+                <span class="val">@Html.DisplayTextFor(model => model.ProgressPercent)</span>
             </div>
             <div class="sep"></div>
             <div class="fee-item">
                 <p class="rs lbl">Pledged</p>
-                <span class="val">$38,000</span>
+                <span class="val">@Html.DisplayTextFor(model => model.CurrentAmount)</span>
             </div>
             <div class="sep"></div>
             <div class="fee-item">
                 <p class="rs lbl">Days Left</p>
-                <span class="val">25</span>
+                <span class="val">@Html.DisplayTextFor(model => model.DaysLeft)</span>
             </div>
         </div>
         <div class="clear"></div>

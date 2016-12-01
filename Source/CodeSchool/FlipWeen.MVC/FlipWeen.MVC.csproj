@@ -198,6 +198,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProjectExploreViewModel.cs" />
     <Compile Include="Models\ProjectCategoryViewModel.cs" />
     <Compile Include="Models\ProjectCreationBindingModel.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
@@ -310,7 +311,7 @@
     <Content Include="Views\Projects\ProjectPage.cshtml" />
     <Content Include="Views\Projects\_ProjectSmallPartial.cshtml" />
     <Content Include="Views\Projects\_PackagesPartial.cshtml" />
-    <Content Include="Views\Projects\ProjectExploreView.cshtml" />
+    <Content Include="Views\Projects\Explore.cshtml" />
     <Content Include="Views\Projects\ProjectSearchView.cshtml" />
     <Content Include="Views\Projects\_ProjectCategoriesPartial.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />

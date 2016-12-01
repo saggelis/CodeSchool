@@ -16,6 +16,8 @@ namespace FlipWeen.Common.Entities
       
         public string Image { get; set; }
 
+        public int ProjectCount { get; set; }
+
         public ICollection<ProjectViewModel> Projects { get; set; }
 
     }

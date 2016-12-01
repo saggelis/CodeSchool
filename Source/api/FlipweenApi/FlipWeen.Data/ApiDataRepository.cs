@@ -27,35 +27,42 @@ namespace FlipWeen.Data
 
         Project IApiDataRepository.GetProject(int projectId)
         {
-            return  this.GetAll<Project>()
+            return  this.GetQuery<Project>()
                 .Where(x => x.Id == projectId)
                 .FirstOrDefault();
         }
 
         IEnumerable<Project> IApiDataRepository.GetLatestProjects()
         {
-            return this.GetAll<Project>()
+            return this.GetQuery<Project>()
                 .Take(10)
                 .ToList();
         }
       
         IEnumerable<Project> IApiDataRepository.GetProjectsByCategory(int categoryId)
         {
-            return this.GetAll<Project>()
+            return this.GetQuery<Project>()
                 .Where(x => x.CategoryId == categoryId)
                 .ToList();
         }
 
+        ProjectCategory IApiDataRepository.GetProjectCategory(int categoryId)
+        {
+            return this.GetQuery<ProjectCategory>()
+                .Include(x => x.Projects)
+                .FirstOrDefault(x => x.Id == categoryId);
+        }
+
         IEnumerable<Project> IApiDataRepository.SearchProjects(string projectName)
         {
-            return this.GetAll<Project>()
+            return this.GetQuery<Project>()
                 .Where(x => x.Name.Contains(projectName))
                 .ToList();
         }
         
         IEnumerable<ProjectCategory> IApiDataRepository.GetProjectCategories()
         {
-           return this.GetAll<ProjectCategory>()
+           return this.GetQuery<ProjectCategory>()
                 .ToList();
         }
         

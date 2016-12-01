@@ -32,13 +32,27 @@ namespace CodeSchool.Controllers
             this._tokenContainer = tokenContainer;
         }
 
-        [Authorize]
+       
         [HttpGet]
         public async Task<ActionResult> ProjectPage(int projectId)
         {
             var response = await _dataClient.GetProject(projectId);
           
             return View(response.Data);
+        }
+
+        
+        [HttpGet]
+        public async Task<ActionResult> Explore(int categoryId)
+        {
+            var response = await _dataClient.GetProjectCategory(categoryId);
+            var allCategories = await _dataClient.GetProjectCategories();
+            var model = new ProjectExploreViewModel
+            {
+                ProjectCategory = response.Data,
+                AllCategories = allCategories.Data
+            };
+            return View(model);
         }
 
         [Authorize]

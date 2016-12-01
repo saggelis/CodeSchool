@@ -13,6 +13,7 @@ namespace FlipWeen.Common.Data
         Project GetProject(int projectId);
         IEnumerable<Project> GetLatestProjects();
         IEnumerable<Project> GetProjectsByCategory(int categoryId);
+        ProjectCategory GetProjectCategory(int categoryId);
         IEnumerable<Project> SearchProjects(string projectName);
         IEnumerable<ProjectCategory> GetProjectCategories();
         void CreateProject(Project project);

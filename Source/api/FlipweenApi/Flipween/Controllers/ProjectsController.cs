@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace FlipWeen.Controllers
 {
-    [Authorize]
+    
     public class ProjectsController : BaseController
     {
         IApiDataRepository _repository;
@@ -47,13 +47,23 @@ namespace FlipWeen.Controllers
         }
 
         [HttpGet]
-        [Route("api/projects/category")]
+        [Route("api/projects/bycategory")]
         public IEnumerable<ProjectViewModel> GetProjectsByCategory(int categoryId)
         {
             var projects = _repository.GetProjectsByCategory(categoryId);
             var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
             return projectsVm;
+        }
+
+        [HttpGet]
+        [Route("api/projects/category")]
+        public ProjectCategoryViewModel GetProjectCategory(int categoryId)
+        {
+            var category = _repository.GetProjectCategory(categoryId);
+            var categoryVm = Mapper.Map<ProjectCategory, ProjectCategoryViewModel>(category);
+
+            return categoryVm;
         }
 
         [HttpGet]
@@ -77,6 +87,7 @@ namespace FlipWeen.Controllers
             return projectCategoriesVm;
         }
 
+        [Authorize]
         [HttpPost]
         [Route("api/projects/createprojects")]
         public  IHttpActionResult CreateProject(ProjectCreationBindingModel model)

@@ -5,7 +5,11 @@ using System.Collections.Generic;
 namespace FlipWeen.MVC.Responses.Responses
 {
    
-    public class ProjectCategoryResponse : ApiResponse<IEnumerable<ProjectCategoryViewModel>>
+    public class ProjectCategoriesResponse : ApiResponse<IEnumerable<ProjectCategoryViewModel>>
+    {
+    }
+
+    public class ProjectCategoryResponse : ApiResponse<ProjectCategoryViewModel>
     {
     }
 }

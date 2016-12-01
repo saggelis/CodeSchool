@@ -13,9 +13,10 @@ namespace FlipWeen.MVC.Client
     public class DataClient : ClientBase, IDataClient
     {
         private const string projectsLatestUri = "api/projects/latest";
-        private const string projectsByCategoryUri = "api/projects/category";
+        private const string projectsByCategoryUri = "api/projects/bycategory";
         private const string projectsSearchUri = "api/projects/search";
         private const string categoriesUri = "api/projects/categories";
+        private const string categoryUri = "api/projects/category";
         private const string projectCreateUri = "api/projects/createprojects";
         private const string projectByIdUri = "api/projects/project";
 
@@ -23,12 +24,18 @@ namespace FlipWeen.MVC.Client
         {
         }
 
-        public async Task<ProjectCategoryResponse> GetProjectCategories()
+        public async Task<ProjectCategoriesResponse> GetProjectCategories()
         {
-          return await this.GetJsonDecodedContent<ProjectCategoryResponse, IEnumerable<ProjectCategoryViewModel>>(categoriesUri);
+          return await this.GetJsonDecodedContent<ProjectCategoriesResponse, IEnumerable<ProjectCategoryViewModel>>(categoriesUri);
           
         }
-        
+
+        public async Task<ProjectCategoryResponse> GetProjectCategory(int categoryId)
+        {
+            return await this.GetJsonDecodedContent<ProjectCategoryResponse, ProjectCategoryViewModel>(categoryUri, "categoryId".AsPair(categoryId.ToString()));
+
+        }
+
         public async Task<ProjectsResponse> GetLatestProjects()
         {
             var response = await ApiClient.GetFormEncodedContent(projectsLatestUri);
@@ -50,7 +57,6 @@ namespace FlipWeen.MVC.Client
         public async Task<ProjectResponse> GetProject(int projectId)
         {
             return await this.GetJsonDecodedContent<ProjectResponse,ProjectViewModel>(projectByIdUri, "projectId".AsPair(projectId.ToString()));
-           // return await CreateJsonResponse<ProjectResponse>(response);
         }
 
         public async Task<ProjectsResponse> Createproject(ProjectCreationBindingModel model)
