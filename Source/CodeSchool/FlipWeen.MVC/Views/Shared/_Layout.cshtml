@@ -65,15 +65,25 @@
                             @*<a href="/Account/Login" class="btn btn-black sys_show_popup_login">Login</a>*@
                         </div>
                         <div class="form-search">
-                            <form action="/Projects/Search">
-                                <label for="sys_txt_keyword">
-                                    <input id="sys_txt_keyword" class="txt-keyword" type="text" placeholder="Search projects" />
+                            <form action="/Projects/Search/">
+                                <label for="projectName">
+                                    <input id="projectName" class="txt-keyword" type="text" placeholder="Search projects" />
                                 </label>
                                 <button class="btn btn-search" type="reset"><i class="icon iMagnifier"></i></button>
                                 <button class="btn btn-reset-keyword" type="reset"><i class="icon iXHover"></i></button>
                             </form>
                         </div>
-                    </div>
+                        <div class="form-search">
+                            @using (Html.BeginForm("Search", "Projects", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.TextBox("projectName", string.Empty, new { @class = "txt-keyword", name = "projectName", placeholder = "Search projects" })
+                               
+                                <button class="btn btn-search" type="submit"><i class="icon iMagnifier"></i></button>
+                                <button class="btn btn-reset-keyword" type="reset"><i class="icon iXHover"></i></button>
+                            }
+                          </div>
+                        </div>
                     <div class="header-left">
                         <h1 id="logo">
                             @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "headerLogo" })

@@ -55,6 +55,20 @@ namespace CodeSchool.Controllers
             return View(model);
         }
 
+        [HttpPost]            
+        public async Task<ActionResult> Search(string projectName)
+        {
+            var response = await _dataClient.SearchProjects(projectName);
+            var allCategories = await _dataClient.GetProjectCategories();
+            var model = new ProjectSearchViewModel
+            {
+                SearchResultCount = response.Data !=null ? response.Data.Count() :0 ,
+                SearchResults = response.Data != null ? response.Data : new List<ProjectViewModel>(),
+                AllCategories = allCategories.Data != null ? allCategories.Data : new List<ProjectCategoryViewModel>(),
+            };
+            return View(model);
+        }
+
         [Authorize]
         [HttpGet]
         public async Task<ActionResult> ProjectCreation()
