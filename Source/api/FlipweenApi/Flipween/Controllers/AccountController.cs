@@ -342,7 +342,11 @@ namespace FlipWeen.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email , FullName = model.FullName};
+            var user = new ApplicationUser() {
+                UserName = model.Email,
+                Email = model.Email ,
+                FullName = model.FullName
+            };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

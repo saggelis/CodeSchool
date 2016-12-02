@@ -4,15 +4,9 @@ using FlipWeen.Common.Data;
 using FlipWeen.Common.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using FlipWeen.Common.ViewModels;
-using FlipWeen.Data;
-using FlipWeen.Models;
-using FlipWeen.Providers;
-using FlipWeen.Results;
+
 using System.Threading.Tasks;
 
 namespace FlipWeen.Controllers
@@ -20,7 +14,7 @@ namespace FlipWeen.Controllers
     
     public class ProjectsController : BaseController
     {
-        IApiDataRepository _repository;
+        readonly IApiDataRepository _repository;
         public ProjectsController(IApiDataRepository repository)
         {
             _repository = repository;
@@ -107,6 +101,32 @@ namespace FlipWeen.Controllers
             };
             _repository.CreateProject(project);
           
+            return Ok();
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        [Route("api/projects/back")]
+        public async Task<IHttpActionResult> Back(ProjectBackBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var transaction = new Transaction()
+            {
+                Amount = model.Amount,
+                CreationDate=model.CreationDate,
+                PackageId = model.PackageId,
+                ProjectId = model.ProjectId,
+                UserId = model.UserId,
+                GlobalId = Guid.NewGuid().ToString(),
+
+            };
+            _repository.CreateTransaction(transaction);
+
             return Ok();
         }
 

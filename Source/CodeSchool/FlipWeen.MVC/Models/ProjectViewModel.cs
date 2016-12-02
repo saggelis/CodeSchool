@@ -39,7 +39,8 @@ namespace FlipWeen.MVC.Models
         public double CurrentAmount { get; set; }
 
         public  UserInfoViewModel User { get; set; }
-     
 
+        public IEnumerable<PackageViewModel> Packages { get; set; }
+        
     }
 }

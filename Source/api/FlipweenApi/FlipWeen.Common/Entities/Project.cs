@@ -46,5 +46,23 @@ namespace FlipWeen.Common.Entities
         [MaxLength(500)]
         public virtual string Video { get; set; }
 
+        [Required]
+        public virtual bool IsPublished{ get; set; }
+        
+        private ICollection<Package> _packages;
+
+        public virtual ICollection<Package> Packages
+        {
+            get
+            {
+                return _packages ?? (_packages = new HashSet<Package>());
+            }
+
+            set
+            {
+                _packages = value;
+            }
+        }
+
     }
 }

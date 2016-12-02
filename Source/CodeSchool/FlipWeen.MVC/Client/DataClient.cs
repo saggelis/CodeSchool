@@ -7,8 +7,6 @@ namespace FlipWeen.MVC.Client
     using System.Threading.Tasks;
 
     using Models;
-    using Responses;
-    using System.Dynamic;
     using System;
     public class DataClient : ClientBase, IDataClient
     {
@@ -19,47 +17,48 @@ namespace FlipWeen.MVC.Client
         private const string categoryUri = "api/projects/category";
         private const string projectCreateUri = "api/projects/createprojects";
         private const string projectByIdUri = "api/projects/project";
+        private const string projectbackUri = "api/projects/back";
 
         public DataClient(IApiClient apiClient) : base(apiClient)
         {
         }
 
-        public async Task<ProjectCategoriesResponse> GetProjectCategories()
+        async Task<ProjectCategoriesResponse> IDataClient.GetProjectCategories()
         {
           return await this.GetJsonDecodedContent<ProjectCategoriesResponse, IEnumerable<ProjectCategoryViewModel>>(categoriesUri);
           
         }
 
-        public async Task<ProjectCategoryResponse> GetProjectCategory(int categoryId)
+        async Task<ProjectCategoryResponse> IDataClient.GetProjectCategory(int categoryId)
         {
             return await this.GetJsonDecodedContent<ProjectCategoryResponse, ProjectCategoryViewModel>(categoryUri, "categoryId".AsPair(categoryId.ToString()));
 
         }
 
-        public async Task<ProjectsResponse> GetLatestProjects()
+        async Task<ProjectsResponse> IDataClient.GetLatestProjects()
         {
             var response = await ApiClient.GetFormEncodedContent(projectsLatestUri);
             return  await CreateJsonResponse<ProjectsResponse>(response);
         }
 
-        public async Task<ProjectsResponse> GetProjectsByCategory(int categoryId)
+        async Task<ProjectsResponse> IDataClient.GetProjectsByCategory(int categoryId)
         {
             var response = await ApiClient.GetFormEncodedContent(projectsByCategoryUri, "categoryId".AsPair(categoryId.ToString()));
             return await CreateJsonResponse<ProjectsResponse>(response);
         }
 
-        public async Task<ProjectsResponse> SearchProjects(string projectName)
+        async Task<ProjectsResponse> IDataClient.SearchProjects(string projectName)
         {
             return await this.GetJsonDecodedContent<ProjectsResponse, IEnumerable<ProjectViewModel>>(projectsSearchUri, "projectName".AsPair(projectName));
           
         }
 
-        public async Task<ProjectResponse> GetProject(int projectId)
+        async Task<ProjectResponse> IDataClient.GetProject(int projectId)
         {
             return await this.GetJsonDecodedContent<ProjectResponse,ProjectViewModel>(projectByIdUri, "projectId".AsPair(projectId.ToString()));
         }
 
-        public async Task<ProjectsResponse> Createproject(ProjectCreationBindingModel model)
+        async Task<ProjectsResponse> IDataClient.Createproject(ProjectCreationBindingModel model)
         {
 
             var projectModel = new ProjectCreationBindingModel
@@ -79,6 +78,23 @@ namespace FlipWeen.MVC.Client
             var createprojectResponse = await CreateJsonResponse<ProjectsResponse>(response);
             return createprojectResponse;
 
+        }
+
+        async Task<ProjectBackResponse> IDataClient.BackProject(ProjectBackBindingModel model)
+        {
+
+            var backingModel = new ProjectBackBindingModel
+            {
+                Amount = model.Amount,
+                CreationDate=model.CreationDate,
+                PackageId = model.PackageId,
+                ProjectId = model.ProjectId,
+                UserId = model.UserId
+            };
+
+            var response = await ApiClient.PostJsonEncodedContent(projectbackUri, backingModel);
+            return await CreateJsonResponse<ProjectBackResponse>(response);
+           
         }
 
     }

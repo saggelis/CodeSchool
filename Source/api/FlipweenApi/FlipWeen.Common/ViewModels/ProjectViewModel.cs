@@ -41,5 +41,7 @@ namespace FlipWeen.Common.Entities
 
         public UserInfoViewModel User { get; set; }
 
+        public IEnumerable<PackageViewModel> Packages { get; set; }
+
     }
 }

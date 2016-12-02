@@ -72,5 +72,11 @@ namespace FlipWeen.Data
             this.SaveChanges();
         }
 
+        void IApiDataRepository.CreateTransaction(Common.Entities.Transaction transaction)
+        {
+            this.Add(transaction);
+            this.SaveChanges();
+        }
+
     }
 }

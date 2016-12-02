@@ -1,0 +1,32 @@
+﻿@model FlipWeen.MVC.Models.ProjectSearchViewModel
+<div class="layout-2cols">
+    <div class="content grid_9">
+        <div class="search-result-page">
+            <div class="top-lbl-val">
+                <h3 class="common-title"><span class="fc-orange">Search</span></h3>
+                <div class="count-result">
+                    <span class="fw-b fc-black">@Html.DisplayTextFor(model => model.SearchResultCount)</span> projects found “<span class="fw-b fc-black"></span>”
+                </div>
+                
+            </div>
+            <div id="list-search-ajax" class="list-project-result">
+               
+                @foreach (var project in Model.SearchResults)
+                {
+                    @Html.Partial("_ProjectMediumPartial", project)
+                    
+                }            
+            </div>
+            <p class="rs ta-c">
+                <a id="showmoreresults" class="btn btn-black btn-load-more" href="#">Show more projects</a>
+            </p>
+        </div><!--end: .search-result-page -->
+    </div><!--end: .content -->
+    <div class="sidebar grid_3">
+   
+        @Html.Partial("_ProjectCategoriesPartial", Model.AllCategories)
+
+
+    </div><!--end: .sidebar -->
+    <div class="clear"></div>
+</div>

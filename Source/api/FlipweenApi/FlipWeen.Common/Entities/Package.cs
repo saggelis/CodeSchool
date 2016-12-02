@@ -13,11 +13,11 @@ namespace FlipWeen.Common.Entities
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required, MaxLength(200)]
         public virtual string Name { get; set; }
 
         [Required]
         public virtual double Amount { get; set; }
-
+        
     }
 }

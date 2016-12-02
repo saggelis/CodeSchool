@@ -1,43 +1,41 @@
-﻿<div class="project-short larger">
+﻿@model FlipWeen.MVC.Models.ProjectViewModel
+<div class="project-short larger">
     <div class="top-project-info">
         <div class="content-info-short clearfix">
             <a href="#" class="thumb-img">
-                <img src="images/ex/th-292x204-2.jpg" alt="$TITLE">
+                <img src="@Url.Content(Model.Image)">
             </a>
             <div class="wrap-short-detail">
-                <h3 class="rs acticle-title"><a class="be-fc-orange" href="#">LYK and Bear #1: No Food Deed Unpunished</a></h3>
-                <p class="rs tiny-desc">by <a href="#" class="fw-b fc-gray be-fc-orange">Ray Sumser</a> in <span class="fw-b fc-gray">New York, NY</span></p>
-                <p class="rs title-description">Nam sit amet est sapien, a faucibus purus. Sed commodo facilisis tempus. Pellentesque placerat elementum adipiscing.</p>
+                <h3 class="rs acticle-title"><a class="be-fc-orange" href="#">@Html.DisplayTextFor(model => model.Name)</a></h3>
+                <p class="rs tiny-desc">by <a href="#" class="fw-b fc-gray be-fc-orange">@Html.DisplayTextFor(model => model.User.FullName)</a></p>
+                <p class="rs title-description">@Html.DisplayTextFor(model => model.Description)</p>
 
             </div>
-            <p class="rs clearfix comment-view">
-                <a href="#" class="fc-gray be-fc-orange">75 comments</a>
-                <span class="sep">|</span>
-                <a href="#" class="fc-gray be-fc-orange">378 views</a>
-            </p>
+         
         </div>
     </div><!--end: .top-project-info -->
     <div class="bottom-project-info clearfix">
-        <div class="project-progress sys_circle_progress" data-percent="53">
+        <div class="project-progress sys_circle_progress" data-percent="@Html.DisplayTextFor(model => model.ProgressPercent)">
             <div class="sys_holder_sector"></div>
         </div>
         <div class="group-fee clearfix">
             <div class="fee-item">
-                <p class="rs lbl">Bankers</p>
-                <span class="val">270</span>
+                <p class="rs lbl">Backers</p>
+                <span class="val">@Html.DisplayTextFor(model => model.BackersNo)</span>
             </div>
             <div class="sep"></div>
             <div class="fee-item">
                 <p class="rs lbl">Pledged</p>
-                <span class="val">$38,000</span>
+                <span class="val">@Html.DisplayTextFor(model => model.CurrentAmount)</span>
             </div>
             <div class="sep"></div>
             <div class="fee-item">
                 <p class="rs lbl">Days Left</p>
-                <span class="val">25</span>
+                <span class="val">@Html.DisplayTextFor(model => model.DaysLeft)</span>
             </div>
         </div>
-        <a class="btn btn-purple btn-buck-project" href="#">Back this project</a>
+        
+        <a>@Html.ActionLink("Back this project", "Back", "Projects", routeValues: null, htmlAttributes: new {  @class = "btn btn-purple btn-buck-project" }) </a>
         <div class="clear"></div>
     </div>
 </div><!--end: project-short item -->

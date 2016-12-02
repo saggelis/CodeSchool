@@ -17,5 +17,6 @@ namespace FlipWeen.Common.Data
         IEnumerable<Project> SearchProjects(string projectName);
         IEnumerable<ProjectCategory> GetProjectCategories();
         void CreateProject(Project project);
+        void CreateTransaction(Transaction transaction);
     }
 }

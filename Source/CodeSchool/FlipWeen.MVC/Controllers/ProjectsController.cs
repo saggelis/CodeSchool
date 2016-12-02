@@ -32,16 +32,16 @@ namespace CodeSchool.Controllers
             this._tokenContainer = tokenContainer;
         }
 
-       
+
         [HttpGet]
         public async Task<ActionResult> ProjectPage(int projectId)
         {
             var response = await _dataClient.GetProject(projectId);
-          
+
             return View(response.Data);
         }
 
-        
+
         [HttpGet]
         public async Task<ActionResult> Explore(int categoryId)
         {
@@ -55,14 +55,14 @@ namespace CodeSchool.Controllers
             return View(model);
         }
 
-        [HttpPost]            
+        [HttpPost]
         public async Task<ActionResult> Search(string projectName)
         {
             var response = await _dataClient.SearchProjects(projectName);
             var allCategories = await _dataClient.GetProjectCategories();
             var model = new ProjectSearchViewModel
             {
-                SearchResultCount = response.Data !=null ? response.Data.Count() :0 ,
+                SearchResultCount = response.Data != null ? response.Data.Count() : 0,
                 SearchResults = response.Data != null ? response.Data : new List<ProjectViewModel>(),
                 AllCategories = allCategories.Data != null ? allCategories.Data : new List<ProjectCategoryViewModel>(),
             };
@@ -84,7 +84,7 @@ namespace CodeSchool.Controllers
                         Text = x.Name
                     });
             }
-            if(response.ResponseCode==System.Net.HttpStatusCode.Unauthorized)
+            if (response.ResponseCode == System.Net.HttpStatusCode.Unauthorized)
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -123,6 +123,63 @@ namespace CodeSchool.Controllers
             return RedirectToAction("ProjectCreation", "Projects");
         }
 
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> Back()
+        {
+            var response = await _dataClient.GetProjectCategories();
+            var model = new ProjectBackBindingModel();
+            if (response.StatusIsSuccessful)
+            {
+                //if (response.Data != null)
+                //    model.Categories = response.Data.ToList().Select(x => new SelectListItem
+                //    {
+                //        Value = x.Id.ToString(),
+                //        Text = x.Name
+                //    });
+            }
+            if (response.ResponseCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> Back(ProjectBackBindingModel model)
+        {
+            var response = await _dataClient.GetProjectCategories();
+            if (response.StatusIsSuccessful)
+            {
+                //if (response.Data != null)
+                //    model.Categories = response.Data.ToList().Select(x => new SelectListItem
+                //    {
+                //        Value = x.Id.ToString(),
+                //        Text = x.Name
+                //    });
+            }
+            if (!ModelState.IsValid)
+            {
+
+            }
+            model.UserId = _tokenContainer.UserId.Value;
+            var responseCreate = await _dataClient.BackProject(model);
+            //return View(model);
+            if (responseCreate.StatusIsSuccessful)
+            {
+                TempData["Success"] = "Backed Project Successfully!";
+            }
+            else
+                TempData["Error"] = "Did not back project";
+
+            return RedirectToAction("ProjectCreation", "Projects");
+        }
+
+
     }
 
+
 }
+
