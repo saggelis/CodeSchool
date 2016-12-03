@@ -223,6 +223,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flipween.css" />
     <Content Include="Content\jquery.sidr.light.css" />
+    <Content Include="Content\main.css" />
     <Content Include="Content\md-slider.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\responsive.css" />
