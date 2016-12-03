@@ -24,8 +24,8 @@ namespace FlipWeen.Common.ViewModels
         [Required]
         public  int ProjectId { get; set; }
 
-        [Required]
-        public int PackageId { get; set; }
+        
+        public int? PackageId { get; set; }
 
     }
 }

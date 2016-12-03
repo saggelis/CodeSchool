@@ -16,6 +16,8 @@ namespace FlipWeen.MVC.Client
         Task<ProjectResponse> GetProject(int projectId);
         Task<ProjectsResponse> Createproject(ProjectCreationBindingModel model);
         Task<ProjectBackResponse> BackProject(ProjectBackBindingModel model);
+        Task<ProjectPackagesResponse> GetPackages();
+        Task<ProjectPackageResponse> GetPackage(int packageId);
 
     }
 }

@@ -81,6 +81,16 @@ namespace FlipWeen.Controllers
             return projectCategoriesVm;
         }
 
+        [HttpGet]
+        [Route("api/projects/packages")]
+        public IEnumerable<PackageViewModel> GetPackages()
+        {
+            var packages = _repository.GetPackages();
+            var packagesVm = Mapper.Map<IEnumerable<Package>, IEnumerable<PackageViewModel>>(packages);
+
+            return packagesVm;
+        }
+
         [Authorize]
         [HttpPost]
         [Route("api/projects/createprojects")]
@@ -89,7 +99,7 @@ namespace FlipWeen.Controllers
             var project = new Project() {
                 Name = model.Name,
                 Description = model.Description,
-                CreationDate = model.CreationDate,
+                CreationDate = DateTime.UtcNow,
                 EndDate = model.EndDate,
                 TargetAmount = model.TargetAmount,
                 UserId = model.UserId,
@@ -118,13 +128,17 @@ namespace FlipWeen.Controllers
             var transaction = new Transaction()
             {
                 Amount = model.Amount,
-                CreationDate=model.CreationDate,
+                CreationDate=DateTime.UtcNow,
                 PackageId = model.PackageId,
                 ProjectId = model.ProjectId,
                 UserId = model.UserId,
                 GlobalId = Guid.NewGuid().ToString(),
 
             };
+
+            var apiKey = "4661510a-989d-47fd-84d6-a4128b9a3544";
+            var apiPassword = "V/dMT7";
+
             _repository.CreateTransaction(transaction);
 
             return Ok();

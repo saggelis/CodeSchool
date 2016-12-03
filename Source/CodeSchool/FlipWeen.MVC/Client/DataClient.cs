@@ -18,6 +18,8 @@ namespace FlipWeen.MVC.Client
         private const string projectCreateUri = "api/projects/createprojects";
         private const string projectByIdUri = "api/projects/project";
         private const string projectbackUri = "api/projects/back";
+        private const string packagesUri = "api/projects/packages";
+        private const string packageUri = "api/projects/package";
 
         public DataClient(IApiClient apiClient) : base(apiClient)
         {
@@ -27,6 +29,18 @@ namespace FlipWeen.MVC.Client
         {
           return await this.GetJsonDecodedContent<ProjectCategoriesResponse, IEnumerable<ProjectCategoryViewModel>>(categoriesUri);
           
+        }
+
+        async Task<ProjectPackagesResponse> IDataClient.GetPackages()
+        {
+            return await this.GetJsonDecodedContent<ProjectPackagesResponse, IEnumerable<PackageViewModel>>(packagesUri);
+
+        }
+
+        async Task<ProjectPackageResponse> IDataClient.GetPackage( int packageId)
+        {
+            return await this.GetJsonDecodedContent<ProjectPackageResponse, PackageViewModel>(packageUri);
+
         }
 
         async Task<ProjectCategoryResponse> IDataClient.GetProjectCategory(int categoryId)

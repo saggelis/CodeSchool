@@ -1,3 +1,33 @@
+var api = "http://localhost:5884/api";
+
+$("#UploadImg").change(function () {
+    var data = new FormData();
+    var files = $("#UploadImg").get(0).files;
+    if (files.length > 0) {
+        data.append("MyImages", files[0]);
+    }
+
+    $.ajax({
+        url: api + "/Upload/uploadfile",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: data,
+        success: function (response) {
+            //code after success
+            $("#txtImg").val(response);
+            $("#imgPreview").attr('src', response);
+        },
+        error: function (er) {
+            alert(er);
+        }
+
+    });
+});
+
+
+
+
 $(function () {
     var e = $(".sys_show_popup_login"),
         t = $("#sys_popup_common");

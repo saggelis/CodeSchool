@@ -119,7 +119,7 @@
                 </div>
 
                 <a>
-                    @Html.ActionLink("Back this project", "Back", "Projects", routeValues: null, htmlAttributes: new { @class = "btn btn-green btn-buck-project" })
+                    @Html.ActionLink("Back this project", "Back", "Projects", routeValues: new {projectId =Model.Id   }, htmlAttributes: new { @class = "btn btn-green btn-buck-project" })
                     <span class="lbl">Back This Project</span>
                     <span class="desc">$1 minimum pledge</span>
                 

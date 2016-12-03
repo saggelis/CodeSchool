@@ -207,6 +207,7 @@
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\ProjectBackResponse.cs" />
+    <Compile Include="Responses\PackageResponse.cs" />
     <Compile Include="Responses\ProjectResponse.cs" />
     <Compile Include="Responses\RegisterResponse.cs" />
     <Compile Include="Responses\ProjectCategoryResponse.cs" />
@@ -320,6 +321,7 @@
     <Content Include="Views\Projects\_ProjectCategoriesPartial.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />
     <Content Include="Views\Projects\_ProjectMediumPartial.cshtml" />
+    <Content Include="Views\Projects\Back.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

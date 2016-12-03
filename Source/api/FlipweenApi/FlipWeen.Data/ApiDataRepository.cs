@@ -65,7 +65,13 @@ namespace FlipWeen.Data
            return this.GetQuery<ProjectCategory>()
                 .ToList();
         }
-        
+
+        IEnumerable<Package> IApiDataRepository.GetPackages()
+        {
+            return this.GetQuery<Package>()
+                 .ToList();
+        }
+
         void  IApiDataRepository.CreateProject(Project project)
         {
             this.Add(project);

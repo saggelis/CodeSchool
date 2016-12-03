@@ -125,19 +125,33 @@ namespace CodeSchool.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult> Back()
+        public async Task<ActionResult> Back(int projectId , int? packageId)
         {
-            var response = await _dataClient.GetProjectCategories();
+        
+            var response = await _dataClient.GetProject(projectId);
+               
             var model = new ProjectBackBindingModel();
             if (response.StatusIsSuccessful)
             {
-                //if (response.Data != null)
-                //    model.Categories = response.Data.ToList().Select(x => new SelectListItem
-                //    {
-                //        Value = x.Id.ToString(),
-                //        Text = x.Name
-                //    });
+                if(response.Data!=null)
+                {
+                    model.Project = response.Data;
+                    model.ProjectId = response.Data.Id;
+                }
+               
+                if (packageId.HasValue)
+                {
+                    var packageResponse = await _dataClient.GetPackage(packageId.Value);
+                    if (packageResponse.Data != null)
+                    {
+                        model.Package = packageResponse.Data;
+                        model.PackageId = packageResponse.Data.Id;
+                    }
+                     
+
+                }
             }
+                
             if (response.ResponseCode == System.Net.HttpStatusCode.Unauthorized)
             {
                 return RedirectToAction("Login", "Account");
@@ -150,15 +164,19 @@ namespace CodeSchool.Controllers
         [HttpPost]
         public async Task<ActionResult> Back(ProjectBackBindingModel model)
         {
-            var response = await _dataClient.GetProjectCategories();
+
+            var response = await _dataClient.GetProject(model.ProjectId);
+            
             if (response.StatusIsSuccessful)
             {
-                //if (response.Data != null)
-                //    model.Categories = response.Data.ToList().Select(x => new SelectListItem
-                //    {
-                //        Value = x.Id.ToString(),
-                //        Text = x.Name
-                //    });
+                model.Project = response.Data;
+                if (model.PackageId.HasValue)
+                {
+                    var packageResponse = await _dataClient.GetPackage(model.PackageId.Value);
+                    if (packageResponse.Data != null)
+                        model.Package = packageResponse.Data;
+
+                }
             }
             if (!ModelState.IsValid)
             {
@@ -174,7 +192,7 @@ namespace CodeSchool.Controllers
             else
                 TempData["Error"] = "Did not back project";
 
-            return RedirectToAction("ProjectCreation", "Projects");
+            return RedirectToAction("Back", "Projects",new { projectId= model.ProjectId });
         }
 
 

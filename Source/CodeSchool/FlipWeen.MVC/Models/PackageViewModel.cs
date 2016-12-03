@@ -17,4 +17,11 @@ namespace FlipWeen.MVC.Models
         public double Amount { get; set; }
         
     }
+
+    public class ProjectPackageViewModel
+    {
+        public int CurrentProjectId { get; set; }
+
+        public IEnumerable<PackageViewModel> Packages { get; set; }
+    }
 }

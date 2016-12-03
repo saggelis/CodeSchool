@@ -22,11 +22,17 @@ namespace FlipWeen.MVC.Models
         [Required]
         public int UserId { get; set; }
 
-        [Required]
+        //[Required]
         public int ProjectId { get; set; }
 
-        [Required]
-        public int PackageId { get; set; }
+      
+        public int? PackageId { get; set; }
+
+       
+        public ProjectViewModel Project { get; set; }
+
+       
+        public PackageViewModel Package { get; set; }
 
     }
 }

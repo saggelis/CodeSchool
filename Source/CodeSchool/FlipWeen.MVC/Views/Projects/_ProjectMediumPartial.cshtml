@@ -35,7 +35,7 @@
             </div>
         </div>
         
-        <a>@Html.ActionLink("Back this project", "Back", "Projects", routeValues: null, htmlAttributes: new {  @class = "btn btn-purple btn-buck-project" }) </a>
+        <a>@Html.ActionLink("Back this project", "Back", "Projects", routeValues: new { projectId = Model.Id   }, htmlAttributes: new {  @class = "btn btn-purple btn-buck-project" }) </a>
         <div class="clear"></div>
     </div>
 </div><!--end: project-short item -->

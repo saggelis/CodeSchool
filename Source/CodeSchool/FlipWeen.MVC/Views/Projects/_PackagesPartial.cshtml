@@ -1,7 +1,7 @@
-﻿@model IEnumerable<FlipWeen.MVC.Models.PackageViewModel>
+﻿@model FlipWeen.MVC.Models.ProjectPackageViewModel
 <div class="wrap-nav-pledge">
     <ul class="rs nav nav-pledge accordion">
-        @foreach (var package in Model)
+        @foreach (var package in Model.Packages)
         {
             <li>
                 <div class=" pledge-label accordion-label clearfix">
@@ -11,11 +11,10 @@
                 <div class=" pledge-content accordion-content">
                     <div class="pledge-detail">
                         <p class="rs pledge-description">@package.Name</p>
-                        <p class="rs ta-c"><a>@Html.ActionLink("Back this project", "Back", "Projects", routeValues: null, htmlAttributes: new { @class = "btn btn-purple btn-buck-project" }) </a>
+                        <p class="rs ta-c"><a>@Html.ActionLink("Back this project", "Back", "Projects", routeValues: new { projectId= Model.CurrentProjectId , packageId =package.Id  }, htmlAttributes: new { @class = "btn btn-purple btn-buck-project" }) </a>
                     </div>
                 </div>
             </li><!--end: pledge-item -->
-
         }
       
      </ul>

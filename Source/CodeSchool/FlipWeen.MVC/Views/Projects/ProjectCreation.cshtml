@@ -56,7 +56,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="file" id="UploadImg" /> <br /><br />
+              
+                <img id="imgPreview" height="400" width="400" />
+                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", id = "txtImg" } })
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </div>
         </div>
