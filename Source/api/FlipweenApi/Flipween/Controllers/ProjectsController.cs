@@ -8,6 +8,10 @@ using System.Web.Http;
 using FlipWeen.Common.ViewModels;
 
 using System.Threading.Tasks;
+using RestSharp;
+using System.Net.Http;
+using System.Net;
+using RestSharp.Authenticators;
 
 namespace FlipWeen.Controllers
 {
@@ -94,7 +98,7 @@ namespace FlipWeen.Controllers
         [Authorize]
         [HttpPost]
         [Route("api/projects/createprojects")]
-        public  IHttpActionResult CreateProject(ProjectCreationBindingModel model)
+        public  HttpResponseMessage CreateProject(ProjectCreationBindingModel model)
         {
             var project = new Project() {
                 Name = model.Name,
@@ -111,18 +115,18 @@ namespace FlipWeen.Controllers
             };
             _repository.CreateProject(project);
           
-            return Ok();
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
 
         [Authorize]
         [HttpPost]
         [Route("api/projects/back")]
-        public async Task<IHttpActionResult> Back(ProjectBackBindingModel model)
+        public async Task<HttpResponseMessage> Back(ProjectBackBindingModel model)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest,ModelState);
             }
 
             var transaction = new Transaction()
@@ -133,15 +137,60 @@ namespace FlipWeen.Controllers
                 ProjectId = model.ProjectId,
                 UserId = model.UserId,
                 GlobalId = Guid.NewGuid().ToString(),
+                VivaOrderId=model.VivaOrderId
 
             };
-
-            var apiKey = "4661510a-989d-47fd-84d6-a4128b9a3544";
-            var apiPassword = "V/dMT7";
-
+        
             _repository.CreateTransaction(transaction);
 
-            return Ok();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("api/projects/verifyviva")]
+        public async Task<HttpResponseMessage> VerifyVivaTransaction(TransactionResult transactionResult)
+        {
+
+            _repository.VerifyVivaTransaction(transactionResult.OrderId, transactionResult.TransactionId);
+          
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("api/projects/vivaorder")]
+        public HttpResponseMessage VivaCreateOrder(OrderOptions options)
+        {
+            var cl = new RestClient("http://demo.vivapayments.com/");
+      
+            var req = new RestRequest("api/orders", Method.POST);
+            options.SourceCode = "4308";
+            req.AddObject(options);
+
+
+            string vivaPaymentFormURL = "http://demo.vivapayments.com/web/newtransaction.aspx?ref=";
+            //string vivaPaymentFormURL = "https://www.vivapayments.com/web/newtransaction.aspx?ref="; // production URL
+
+            // class that contains the order options that will be sent
+            var apiKey = "4661510a-989d-47fd-84d6-a4128b9a3544";
+            var apiPassword = "V/dMT7";
+            cl.Authenticator = new HttpBasicAuthenticator(apiKey, apiPassword);
+
+            // Do the post 
+            var res = cl.Execute<OrderResult>(req);
+
+            res.Data.RedirectUrl = vivaPaymentFormURL + res.Data.OrderCode.ToString();
+            // once the order code is successfully created, redirect to payment form to complete the payment
+            if (res.Data.ErrorCode == 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, res.Data);
+                //Response.Redirect(this.vivaPaymentFormURL + res.Data.OrderCode.ToString());
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "The Order  failed");
+            }
         }
 
     }

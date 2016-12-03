@@ -41,6 +41,31 @@ namespace CodeSchool.Controllers
             return View(response.Data);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> BackSuccess(long s, string t, string Lang)
+        {
+
+
+            var response = await _dataClient.VerifyVivaTransaction(new TransactionResult {
+
+                OrderId=s,
+                TransactionId=t
+
+            });
+            TempData["Success"] = "Backed Project Successfully!";
+           
+           
+          return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> BackFail()
+        {
+
+            TempData["Success"] = "Backed Project Successfully!";
+            return View();
+        }
+
 
         [HttpGet]
         public async Task<ActionResult> Explore(int categoryId)
@@ -183,14 +208,31 @@ namespace CodeSchool.Controllers
 
             }
             model.UserId = _tokenContainer.UserId.Value;
-            var responseCreate = await _dataClient.BackProject(model);
-            //return View(model);
-            if (responseCreate.StatusIsSuccessful)
+          
+            var request = Request;
+            var urlBase = string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority);
+            var vivaOrderResponse = await _dataClient.VivaCreateOrder(new OrderOptions
             {
-                TempData["Success"] = "Backed Project Successfully!";
+                Amount = Convert.ToInt64(model.Amount * 100)
+               // ReturnUrl= urlBase + "/BackResults"
+
+
+            });
+
+            if(vivaOrderResponse.StatusIsSuccessful)
+            {
+                model.VivaOrderId = vivaOrderResponse.Data.OrderCode;
+                var responseCreate = await _dataClient.BackProject(model);
+                return new RedirectResult(vivaOrderResponse.Data.RedirectUrl,true);
+            
             }
-            else
-                TempData["Error"] = "Did not back project";
+          
+            //if (responseCreate.StatusIsSuccessful)
+            //{
+            //    TempData["Success"] = "Backed Project Successfully!";
+            //}
+            //else
+            //    TempData["Error"] = "Did not back project";
 
             return RedirectToAction("Back", "Projects",new { projectId= model.ProjectId });
         }

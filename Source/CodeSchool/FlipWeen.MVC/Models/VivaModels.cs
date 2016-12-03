@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FlipWeen.MVC.Api;
+using System;
 
-namespace FlipWeen.Common.Entities
+
+namespace FlipWeen.MVC.Models
 {
    
-    public class OrderOptions
+    public class OrderOptions : ApiModel
     {
         public long Amount { get; set; }
-
-        public string SourceCode { get; set; }
-
-
+        
     }
 
     // class that contains the order results
@@ -29,12 +22,12 @@ namespace FlipWeen.Common.Entities
 
     }
 
-    public class TransactionResult
+    public class TransactionResult:ApiModel
     {
         public long OrderId { get; set; }
 
         public string TransactionId { get; set; }
-        
+
     }
 
 }

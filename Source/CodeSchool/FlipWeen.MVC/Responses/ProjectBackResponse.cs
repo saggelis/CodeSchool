@@ -9,5 +9,9 @@ namespace FlipWeen.MVC.Responses.Responses
     {
     }
 
-   
+    public class VivaResponse : ApiResponse<OrderResult>
+    {
+    }
+
+
 }

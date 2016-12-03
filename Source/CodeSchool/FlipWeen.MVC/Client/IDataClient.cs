@@ -19,5 +19,9 @@ namespace FlipWeen.MVC.Client
         Task<ProjectPackagesResponse> GetPackages();
         Task<ProjectPackageResponse> GetPackage(int packageId);
 
+        Task<VivaResponse> VivaCreateOrder(OrderOptions model);
+
+        Task<VivaResponse> VerifyVivaTransaction(TransactionResult result);
+
     }
 }

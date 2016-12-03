@@ -19,6 +19,10 @@ namespace FlipWeen.Common.Data
         void CreateProject(Project project);
         void CreateTransaction(Transaction transaction);
 
+        void VerifyVivaTransaction(long vivaOrderId, string vivaTransactionId);
+
+        Transaction GetTransactionByOrderId(long orderId);
+
         IEnumerable<Package> GetPackages();
     }
 }

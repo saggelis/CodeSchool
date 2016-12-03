@@ -1,4 +1,4 @@
-var api = "http://localhost:5884/api";
+var api = "http://flipweensrv.gr/api";
 
 $("#UploadImg").change(function () {
     var data = new FormData();

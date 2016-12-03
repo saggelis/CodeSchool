@@ -12,6 +12,7 @@ namespace FlipWeen.MVC.Client
     {
         private const string projectsLatestUri = "api/projects/latest";
         private const string projectsByCategoryUri = "api/projects/bycategory";
+        private const string projectsByOrderUri = "api/projects/order";
         private const string projectsSearchUri = "api/projects/search";
         private const string categoriesUri = "api/projects/categories";
         private const string categoryUri = "api/projects/category";
@@ -20,6 +21,8 @@ namespace FlipWeen.MVC.Client
         private const string projectbackUri = "api/projects/back";
         private const string packagesUri = "api/projects/packages";
         private const string packageUri = "api/projects/package";
+        private const string vivaUri = "api/projects/vivaorder";
+        private const string vivaVerifyUri = "api/projects/verifyviva";
 
         public DataClient(IApiClient apiClient) : base(apiClient)
         {
@@ -103,11 +106,29 @@ namespace FlipWeen.MVC.Client
                 CreationDate=model.CreationDate,
                 PackageId = model.PackageId,
                 ProjectId = model.ProjectId,
-                UserId = model.UserId
+                UserId = model.UserId,
+                VivaOrderId= model.VivaOrderId
             };
 
             var response = await ApiClient.PostJsonEncodedContent(projectbackUri, backingModel);
             return await CreateJsonResponse<ProjectBackResponse>(response);
+           
+        }
+
+        async Task<VivaResponse> IDataClient.VivaCreateOrder(OrderOptions model)
+        {
+            var response = await ApiClient.PostJsonEncodedContent(vivaUri, model);
+            var orderResponse = await CreateJsonResponse<VivaResponse>(response);
+            var orderResult= await DecodeContent<OrderResult>(response);
+            orderResponse.Data = orderResult;
+            return orderResponse;
+
+        }
+
+        async Task<VivaResponse> IDataClient.VerifyVivaTransaction(TransactionResult result)
+        {
+            var response = await ApiClient.PostJsonEncodedContent(vivaVerifyUri, result);
+            return  await CreateJsonResponse<VivaResponse>(response);
            
         }
 

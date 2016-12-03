@@ -28,7 +28,10 @@ namespace FlipWeen.MVC.Models
       
         public int? PackageId { get; set; }
 
-       
+
+        public long? VivaOrderId { get; set; }
+
+
         public ProjectViewModel Project { get; set; }
 
        

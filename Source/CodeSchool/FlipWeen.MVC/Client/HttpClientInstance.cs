@@ -10,7 +10,7 @@
     /// </summary>
     public static class HttpClientInstance
     {
-        private const string BaseUri = "http://localhost:5884/";
+        private const string BaseUri = "http://flipweensrv.gr/";
         private static readonly HttpClient instance = new HttpClient {BaseAddress = new Uri(BaseUri)};
 
         public static HttpClient Instance

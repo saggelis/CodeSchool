@@ -35,6 +35,11 @@ namespace FlipWeen.Common.Entities
 
         [ForeignKey("PackageId")]
         public virtual Package Package { get; set; }
-        
+
+        public virtual long? VivaOrderId { get; set; }
+
+        [MaxLength(200)]
+        public virtual string TransactionId { get; set; }
+
     }
 }

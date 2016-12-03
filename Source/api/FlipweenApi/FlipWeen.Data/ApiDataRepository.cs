@@ -84,5 +84,19 @@ namespace FlipWeen.Data
             this.SaveChanges();
         }
 
+        void IApiDataRepository.VerifyVivaTransaction(long vivaOrderId , string vivaTransactionId)
+        {
+            var dbTransaction = this.First<Common.Entities.Transaction>(x => x.VivaOrderId == vivaOrderId);
+            dbTransaction.TransactionId= vivaTransactionId;
+            this.SaveChanges();
+        }
+
+        Common.Entities.Transaction IApiDataRepository.GetTransactionByOrderId(long orderId)
+        {
+            return this.GetQuery<Common.Entities.Transaction>()
+                .FirstOrDefault(x => x.VivaOrderId == orderId);
+        }
+
+
     }
 }

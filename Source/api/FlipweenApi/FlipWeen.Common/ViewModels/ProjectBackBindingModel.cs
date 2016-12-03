@@ -27,5 +27,7 @@ namespace FlipWeen.Common.ViewModels
         
         public int? PackageId { get; set; }
 
+        public long? VivaOrderId { get; set; }
+
     }
 }
