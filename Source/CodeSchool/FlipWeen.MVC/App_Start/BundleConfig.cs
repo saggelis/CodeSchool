@@ -46,8 +46,8 @@ namespace FlipWeen.MVC
                       "~/Content/responsive.css",
                       "~/Content/responsiveslides.css",
                       "~/Content/flipween.css",
-                      "~/Content/style.css",
-                      "~/Content/main.css"
+                      "~/Content/style.css"
+                    //  "~/Content/main.css"
                       
                       ));
         }
