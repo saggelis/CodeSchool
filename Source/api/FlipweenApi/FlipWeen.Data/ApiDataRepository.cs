@@ -56,6 +56,7 @@ namespace FlipWeen.Data
         IEnumerable<Project> IApiDataRepository.SearchProjects(string projectName)
         {
             return this.GetQuery<Project>()
+                .Include(x=>x.Transactions)
                 .Where(x => x.Name.Contains(projectName))
                 .ToList();
         }
@@ -95,6 +96,14 @@ namespace FlipWeen.Data
         {
             return this.GetQuery<Common.Entities.Transaction>()
                 .FirstOrDefault(x => x.VivaOrderId == orderId);
+        }
+
+
+        IList<Common.Entities.Transaction> IApiDataRepository.GetTransactionByProjectId(int projectId)
+        {
+            return this.GetQuery<Common.Entities.Transaction>()
+                .Where(x=>x.ProjectId== projectId)
+                .ToList();
         }
 
 

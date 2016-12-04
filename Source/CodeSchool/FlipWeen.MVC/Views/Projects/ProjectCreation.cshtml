@@ -1,44 +1,47 @@
 ﻿@model FlipWeen.MVC.Models.ProjectCreationBindingModel
 
 @{
-    ViewBag.Title = "ProjectCreation";
+    ViewBag.Title = "Project Creation";
 }
 
-<h2>ProjectCreation</h2>
+<h2>Project Creation</h2>
 
 
 @using (Html.BeginForm("ProjectCreation", "Projects", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>ProjectCreationBindingModel</h4>
+  
+       
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
+
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
+
         <div class="form-group">
             @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-7">
                 @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.TargetAmount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -47,7 +50,7 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+           <label  class = "control-label col-md-2"  >Category</label>
             <div class="col-md-10">
                 @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Value", "Text"), "  -----Select List-----  ", new { @class = "form-control" })
             </div>
@@ -57,7 +60,7 @@
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" id="UploadImg" /> <br /><br />
-              
+
                 <img id="imgPreview" height="400" width="400" />
                 @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", id = "txtImg" } })
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
@@ -85,10 +88,8 @@
                 }
             </div>
         </div>
-    </div>
+    
 }
-<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="box_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
-
 <div>
     @Html.ActionLink("Back to List", "Explore", "Home")
 </div>

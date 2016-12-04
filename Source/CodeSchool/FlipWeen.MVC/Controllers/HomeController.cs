@@ -26,9 +26,11 @@ namespace FlipWeen.MVC.Controllers
             this._dataClient = loginClient;
             this._tokenContainer = tokenContainer;
         }
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var allCategories = await _dataClient.GetProjectCategories();
+            
+            return View(allCategories.Data);
         }
 
         public ActionResult About()

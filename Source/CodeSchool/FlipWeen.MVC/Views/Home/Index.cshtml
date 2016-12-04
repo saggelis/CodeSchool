@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<FlipWeen.MVC.Models.ProjectCategoryViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -63,14 +64,7 @@
                 <p class="description rs">Pellentesque laoreet sapien id lacus luctus non fringilla elit lobortis. Fusce augue diam, tempor posuere pharetra sed, feugiat non sapien.</p>
                 <nav class="lst-category">
                 
-
-
-
-
-
-                    <p class="rs view-all-category">
-                        <a href="category.html" class="be-fc-orange">+ View all categories</a>
-                    </p>
+                    @Html.Partial("_ProjectCategoriesPartial", Model)
                 </nav><!--end: .lst-category -->
             </div>
         </div><!--end: .left-lst-category -->

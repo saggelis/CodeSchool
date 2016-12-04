@@ -64,5 +64,20 @@ namespace FlipWeen.Common.Entities
             }
         }
 
+        private ICollection<Transaction> _transactions;
+
+        public virtual ICollection<Transaction> Transactions
+        {
+            get
+            {
+                return _transactions ?? (_transactions = new HashSet<Transaction>());
+            }
+
+            set
+            {
+                _transactions = value;
+            }
+        }
+
     }
 }

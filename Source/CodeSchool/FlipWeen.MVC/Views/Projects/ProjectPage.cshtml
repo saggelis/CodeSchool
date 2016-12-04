@@ -19,7 +19,35 @@
                                 </ul>
                             </div>
                         </div>
-                        <video src="@Url.Content(Model.Video)"></video>
+                        @{
+                            
+                            var youtube = "";
+                         
+                                // Retrieve the numbers that the user entered.
+                                string num1 = Model.Video;
+                                num1.ToString();
+                                string y = "";
+                                if (num1.Contains("https://youtu.be/"))
+                                {
+                                    for (int i = 16; i < num1.Length; i++)
+                                    {
+                                        y = y + num1[i];
+                                    }
+                                }
+                                else if (num1.Contains("https://www.youtube.com/watch?v="))
+                                {
+                                    for (int i = 32; i < num1.Length; i++)
+                                    {
+                                        y = y + num1[i];
+                                    }
+                                }
+                                // Convert the entered strings into integers numbers and add.
+                                youtube = "https://www.youtube.com/embed/" + y;
+                            }
+                        
+
+                        <iframe width="560" height="315" src="@youtube" frameborder="0" allowfullscreen></iframe>
+                      
                     </div>
                 </div><!--end: .top-project-info -->
                 <div class="bottom-project-info clearfix">
@@ -39,7 +67,7 @@
                         <div class="sep"></div>
                         <div class="fee-item">
                             <p class="rs lbl">Days Left</p>
-                            <span class="val">@Html.DisplayTextFor(model => model.DaysLeft)</span>
+                          <span class="val">@Html.DisplayTextFor(model => model.DaysLeft)</span>
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -122,7 +150,9 @@
                     @Html.ActionLink("Back this project", "Back", "Projects", routeValues: new {projectId =Model.Id   }, htmlAttributes: new { @class = "btn btn-green btn-buck-project" })
                     <span class="lbl">Back This Project</span>
                     <span class="desc">$1 minimum pledge</span>
-                
+                    <div class="fb-share-button" data-href="http://flipween.gr/Projects/ProjectPage?projectId=@Model.Id" data-layout="box_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
+                    <a href="http://flipween.gr/Projects/ProjectPage?projectId=@Model.Id" class="twitter-share-button" data-show-count="false">Tweet</a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </a>
                 <p class="rs description">This project will only be funded if at least @Html.DisplayTextFor(model => model.TargetAmount) is pledged by @Html.DisplayTextFor(model => model.EndDate).</p>
             </div>
@@ -145,7 +175,7 @@
                 </div>
             </div>
         </div><!--end: .project-author -->
-        @Html.Partial("_PackagesPartial", Model.Packages)
+        @*@Html.Partial("_PackagesPartial", Model.Packages)*@
         <p>
             @Html.ActionLink("Edit", "Edit", new
    {@* id = Model.Id *@}) |

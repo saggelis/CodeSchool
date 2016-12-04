@@ -24,5 +24,7 @@ namespace FlipWeen.Common.Data
         Transaction GetTransactionByOrderId(long orderId);
 
         IEnumerable<Package> GetPackages();
+
+        IList<Common.Entities.Transaction> GetTransactionByProjectId(int projectId);
     }
 }

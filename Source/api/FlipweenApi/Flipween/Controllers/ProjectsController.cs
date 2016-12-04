@@ -3,6 +3,7 @@ using Flipween.Controllers;
 using FlipWeen.Common.Data;
 using FlipWeen.Common.Entities;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Web.Http;
 using FlipWeen.Common.ViewModels;
@@ -39,7 +40,12 @@ namespace FlipWeen.Controllers
         public ProjectViewModel GetProject(int projectId)
         {
             var project = _repository.GetProject(projectId);
+            var transactions = _repository.GetTransactionByProjectId(projectId);
             var projectVm = Mapper.Map<Project, ProjectViewModel>(project);
+            projectVm.BackersNo = transactions.Count;
+            projectVm.CurrentAmount = transactions.Sum(x=>x.Amount);
+            projectVm.DaysLeft = Convert.ToInt32((project.EndDate - project.CreationDate).TotalDays);
+            projectVm.ProgressPercent = (int)Math.Round((double)(100 * transactions.Sum(x => x.Amount)) / project.TargetAmount,2);
 
             return projectVm;
         }
@@ -69,6 +75,7 @@ namespace FlipWeen.Controllers
         public IEnumerable<ProjectViewModel> SearchProjects(string projectName)
         {
             var projects = _repository.SearchProjects(projectName);
+         
             var projectsVm = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
             return projectsVm;

@@ -43,5 +43,6 @@ namespace FlipWeen.Common.Entities
 
         public IEnumerable<PackageViewModel> Packages { get; set; }
 
+     
     }
 }
