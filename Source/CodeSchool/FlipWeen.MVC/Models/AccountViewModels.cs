@@ -67,10 +67,11 @@ namespace FlipWeen.MVC.Models
     {
         [Required]
         [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "FullName")]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
         [Required]
@@ -118,10 +119,11 @@ namespace FlipWeen.MVC.Models
     {
         [Required]
         [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "FullName")]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
         [Required]

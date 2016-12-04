@@ -12,8 +12,11 @@ namespace FlipWeen.MVC
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-form.js",
                       "~/Scripts/jquery.sidr.min.js",
-                      "~/Scripts/jquery.touchwipe.min.js"
-                      
+                      "~/Scripts/jquery.touchwipe.min.js",
+                       "~/Scripts/md_slider.min.js",
+                        "~/Scripts/jquery-migrate-1.2.1.min.js"
+
+
                         ));
             
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -25,7 +28,7 @@ namespace FlipWeen.MVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
-                     "~/Scripts/md_slider.min.js",
+                    
                      "~/Scripts/raphael-min.js",
                      "~/Scripts/responsiveslides.min.js",
                      "~/Scripts/script.js",

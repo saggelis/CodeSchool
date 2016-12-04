@@ -59,23 +59,24 @@
                 <div class="grid_12 header-content">
                     <div id="sys_header_right" class="header-right">
                         <div class="account-panel">
-                            <a> @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-purple sys_show_popup_login" })</a>
-                            @*<a href="/Account/Register" class="btn btn-purple sys_show_popup_login">Register</a>*@
-                            <a>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-black sys_show_popup_login" })</a>
-                            @*<a href="/Account/Login" class="btn btn-black sys_show_popup_login">Login</a>*@
+                            @*<a> @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-purple sys_show_popup_login" })</a>*@
+                          
+                            <a href="/Account/Register" class="btn btn-purple">Register</a>
+                            <a>@*@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-black sys_show_popup_login" })*@</a>
+                            <a href="/Account/Login" class="btn btn-black">Login</a>
                         </div>
-                        
+
                         <div class="form-search">
                             @using (Html.BeginForm("Search", "Projects", FormMethod.Post))
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.TextBox("projectName", string.Empty, new { @class = "txt-keyword", name = "projectName", placeholder = "Search projects" })
-                               
+
                                 <button class="btn btn-search" type="submit"><i class="icon iMagnifier"></i></button>
                                 <button class="btn btn-reset-keyword" type="reset"><i class="icon iXHover"></i></button>
                             }
-                          </div>
                         </div>
+                    </div>
                     <div class="header-left">
                         <h1 id="logo">
                             @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "headerLogo" })
@@ -96,7 +97,8 @@
                     </div>
                 </div>
             </div>
-            </header>
+        </header>
+
                 @*<div class="navbar navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
